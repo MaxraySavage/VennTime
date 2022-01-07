@@ -30,3 +30,8 @@ As a LaunchCode student, Maxray had trouble organizing study times for a large g
 * OAuth integration
 
 ## What we'll Learn
+
+
+## Project Tracker
+* https://trello.com/invite/b/YHBcnb23/aa763b9b490db96c59f737c7ecc835f6/venntime-project-board
+* https://trello.com/b/3A0JuPRC/user-stories
