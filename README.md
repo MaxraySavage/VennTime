@@ -30,3 +30,6 @@ As a LaunchCode student, Maxray had trouble organizing study times for a large g
 * OAuth integration
 
 ## What we'll Learn
+* Research other SpringBoot compatible templates (like Angular)
+* Research visual frameworks for frontend (Bootstrap, material, Bulma)
+* Google Calendar API
