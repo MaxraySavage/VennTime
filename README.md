@@ -33,3 +33,6 @@ As a LaunchCode student, Maxray had trouble organizing study times for a large g
 * Research other SpringBoot compatible templates (like Angular)
 * Research visual frameworks for frontend (Bootstrap, material, Bulma)
 * Google Calendar API
+
+## Project Tracker
+https://trello.com/b/YHBcnb23/venntime-project-board
