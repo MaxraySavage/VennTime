@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping("/")
-    @ResponseBody
-    public String getHomePage() {
-        return "<h1>You found home!</h1>";
+    public String getHomePage(Model model) {
+        model.addAttribute("event", new Event());
+        return "home";
     }
 }
