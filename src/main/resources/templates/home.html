@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<form method="post" action="/">
+<!--Name, description, availability ranges, -->
+    <label>Name</label>
+    <input th:field="${event.name}"/>
+    <label>Description</label>
+    <textarea th:field="${event.description}">
+        Event Description
+    </textarea>
+    <input type="time" name="timestamp">
+    <input type="submit"/>
+
+</form>
+</body>
+</html>
