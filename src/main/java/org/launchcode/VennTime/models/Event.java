@@ -1,6 +1,7 @@
 package org.launchcode.VennTime.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,10 @@ public class Event extends AbstractEntity{
     @OneToMany
     private List<Attendee> attendees;
 
-    public Event() {}
+    public Event() {
+        this.availabilityRanges = new ArrayList<AvailabilityRange>();
+        this.attendees = new ArrayList<Attendee>();
+    }
 
     public Event(String name, String description, List<AvailabilityRange> availabilityRanges, List<Attendee> attendees) {
         this.name = name;
