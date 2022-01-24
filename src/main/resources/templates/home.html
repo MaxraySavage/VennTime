@@ -8,9 +8,9 @@
 <form method="post" action="/">
 <!--Name, description, availability ranges, -->
     <label>Name</label>
-    <input th:field="${event.name}"/>
+    <input th:field="${createEventDTO.name}"/>
     <label>Description</label>
-    <textarea th:field="${event.description}">
+    <textarea th:field="${createEventDTO.description}">
         Event Description
     </textarea>
     <input type="time" name="timestamp">
