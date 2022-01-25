@@ -13,7 +13,7 @@
     <textarea th:field="${createEventDTO.description}">
         Event Description
     </textarea>
-    <input type="time" name="timestamp">
+    <input type="date" th:field="${createEventDTO.date}">
     <input type="submit"/>
 
 </form>

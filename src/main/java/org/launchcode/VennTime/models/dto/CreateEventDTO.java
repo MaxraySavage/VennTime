@@ -1,10 +1,17 @@
 package org.launchcode.VennTime.models.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
 public class CreateEventDTO {
 
     private String name;
 
     private String description;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
     public CreateEventDTO() {
     }
@@ -23,5 +30,13 @@ public class CreateEventDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
