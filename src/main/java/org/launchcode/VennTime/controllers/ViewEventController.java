@@ -10,25 +10,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
 public class ViewEventController {
 
-    private static List<Event> event = new ArrayList<>();
-
     @Autowired
     EventRepository eventRepository;
 
-    @GetMapping
-    public String displayEventsById(Model model) {
-        model.addAttribute("event", event);
-        return "event";
+    @GetMapping("viewEvent")
+    public String displayViewEventForm (Model model) {
+        model.addAttribute("title", "View Event");
+
+        return "viewEvent";
     }
-    @PostMapping("create")
-    public String processCreateEventForm(@RequestParam String eventName,
-                                         @RequestParam String eventDescription) {
-        event.add(new Event());
-        return "";
+
+    @PostMapping("viewEvent")
+    public String  processViewEventForm(@RequestParam int id) {
+        Optional<Event> optionalEvent = eventRepository.findById(id);
+
+
+     return "redirect:";
+
     }
-}
+    }

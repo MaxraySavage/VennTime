@@ -28,4 +28,5 @@ public class HomeController {
         eventRepository.save(newEvent);
         return newEvent.getName();
     }
+
 }
