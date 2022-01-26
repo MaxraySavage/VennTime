@@ -17,8 +17,8 @@ public class DTOMapper {
         Event newEvent = new Event();
         newEvent.setName(createEventDTO.getName());
         newEvent.setDescription(createEventDTO.getDescription());
-        Instant startInstant = createEventDTO.getDate().atTime(12, 30).atZone(ZoneId.of("America/New_York")).toInstant();
-        Instant endInstant = startInstant.plusSeconds(3600);
+        Instant startInstant = createEventDTO.getDate().atTime(createEventDTO.getStartTime()).atZone(ZoneId.of(createEventDTO.getTimezone())).toInstant();
+        Instant endInstant = createEventDTO.getDate().atTime(createEventDTO.getEndTime()).atZone(ZoneId.of(createEventDTO.getTimezone())).toInstant();
         Timestamp startTime = new Timestamp(startInstant.toEpochMilli());
         Timestamp endTime = new Timestamp(endInstant.toEpochMilli());
         AvailabilityRange availabilityRange = new AvailabilityRange(startTime, endTime);
