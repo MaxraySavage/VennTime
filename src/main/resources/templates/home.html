@@ -13,6 +13,13 @@
         Event Description
     </textarea>
     <input type="date" th:field="${createEventDTO.date}">
+    <input type="time" name="startTime"/>
+    <input type="time" name="endTime"/>
+    <select th:field="${createEventDTO.timezone}">
+        <th:block th:each="possibleTimezone : ${createEventDTO.getPossibleTimezones}">
+            <option th:value="${possibleTimezone}" th:text="${possibleTimezone}"></option>
+        </th:block>
+    </select>
     <input type="submit"/>
 
 </form>
