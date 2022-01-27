@@ -5,57 +5,49 @@
 
 <body>
 
-<form method="post" action="/">
-<!--Name, description, availability ranges, -->
-    <label>Name</label>
-    <input th:field="${createEventDTO.name}"/>
-    <label>Description</label>
-    <textarea th:field="${createEventDTO.description}">
-        Event Description
-    </textarea>
-    <input type="date" th:field="${createEventDTO.date}">
-    <input type="time" name="startTime"/>
-    <input type="time" name="endTime"/>
-    <select th:field="${createEventDTO.timezone}">
-        <th:block th:each="possibleTimezone : ${createEventDTO.getPossibleTimezones}">
-            <option th:value="${possibleTimezone}" th:text="${possibleTimezone}"></option>
-        </th:block>
-    </select>
-    <input type="submit"/>
-
     <div class="container">
         <h1 class="page-header text-center">VennTime</h1>
     </div>
     <hr>
+
         <form method="post" action="/">
         <!--Name, description, availability ranges, -->
             <div class="container">
-                <div class="row g-3">
-                    <div class="col-md-6">
+            <div class="row g-3">
+            <div class="col-md-5">
+                <label>Calendar</label>
+            </div>
+
+                    <div class="col-md-2 text-center">
                         <div class="form-group">
                          <label>Name</label>
                             <input th:field="${createEventDTO.name}" class="form-control"/>
                         </div>
+                        <input type="submit"/>
+                    </div>
 
+                <div class="col-md-5 text-center">
+                        <div class="form-group">
+                            <label>Availability Range</label>
+                            <input type="date" th:field="${createEventDTO.date}" class="form-control">
+                            <input type="time" name="startTime"class="form-control" />
+                            <input type="time" name="endTime" class="form-control" />
+                            <select th:field="${createEventDTO.timezone}" class="form-control" >
+                                <th:block th:each="possibleTimezone : ${createEventDTO.getPossibleTimezones}">
+                                    <option th:value="${possibleTimezone}" th:text="${possibleTimezone}"></option>
+                                </th:block>
+                            </select>
+                        </div>
                     <div class="form-group">
-                        <label>Description</label>
-                            <textarea th:field="${createEventDTO.description}" class="form-control">
+                        <textarea th:field="${createEventDTO.description}" class="form-control" placeholder="Description">
                             Event Description
                             </textarea>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Date</label>
-                            <input type="date" th:field="${createEventDTO.date}" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <input type="submit"/>
             </div>
     </form>
+<hr>
+
 </body>
 </html>
