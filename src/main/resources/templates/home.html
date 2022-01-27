@@ -4,7 +4,24 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
-<div class="container">
+
+<form method="post" action="/">
+<!--Name, description, availability ranges, -->
+    <label>Name</label>
+    <input th:field="${createEventDTO.name}"/>
+    <label>Description</label>
+    <textarea th:field="${createEventDTO.description}">
+        Event Description
+    </textarea>
+    <input type="date" th:field="${createEventDTO.date}">
+    <input type="time" name="startTime"/>
+    <input type="time" name="endTime"/>
+    <select th:field="${createEventDTO.timezone}">
+        <th:block th:each="possibleTimezone : ${createEventDTO.getPossibleTimezones}">
+            <option th:value="${possibleTimezone}" th:text="${possibleTimezone}"></option>
+        </th:block>
+    </select>
+    <input type="submit"/>
 
     <div class="container">
         <h1 class="page-header text-center">VennTime</h1>
@@ -38,8 +55,7 @@
             </div>
 
         <input type="submit"/>
-
+            </div>
     </form>
-</div>
 </body>
 </html>
