@@ -6,14 +6,21 @@
 <body>
 <form method="post" action="/">
 <!--Name, description, availability ranges, -->
+
     <label>Name</label>
-    <input th:field="${createEventDTO.name}"/>
+    <input  th:field="${createEventDTO.name}"/>
+
+        <p th:errors="${createEventDTO.name}"></p>
+
     <label>Description</label>
     <textarea th:field="${createEventDTO.description}">
         Event Description
     </textarea>
+    <p th:errors="${createEventDTO.description}"></p>
+
     <input type="date" th:field="${createEventDTO.date}">
     <input type="submit"/>
+    <p th:errors="${createEventDTO.date}"></p>
 
 </form>
 </body>
