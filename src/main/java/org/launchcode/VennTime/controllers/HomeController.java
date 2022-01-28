@@ -2,6 +2,8 @@ package org.launchcode.VennTime.controllers;
 
 import org.launchcode.VennTime.data.EventRepository;
 import org.launchcode.VennTime.models.Event;
+import org.launchcode.VennTime.models.dto.CreateEventDTO;
+import org.launchcode.VennTime.models.mapper.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +18,19 @@ public class HomeController {
     @Autowired
     EventRepository eventRepository;
 
+    @Autowired
+    private DTOMapper dtoMapper;
+
     @GetMapping("/")
     public String getHomePage(Model model) {
-        model.addAttribute("event", new Event());
+        model.addAttribute("createEventDTO", new CreateEventDTO());
         return "home";
     }
 
     @ResponseBody
     @PostMapping("/")
-    public String processCreateEvent(Model model, @ModelAttribute Event newEvent){
+    public String processCreateEvent(Model model, @ModelAttribute CreateEventDTO createEventDTO){
+        Event newEvent = dtoMapper.toEvent(createEventDTO);
         eventRepository.save(newEvent);
         return newEvent.getName();
     }
