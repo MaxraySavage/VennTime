@@ -5,6 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.*;
 
 public class CreateEventDTO {
 
@@ -20,7 +23,18 @@ public class CreateEventDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime startTime;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime endTime;
+
+    private String timezone;
+
+    private static final List<String> possibleTimezones = new ArrayList<>(ZoneId.getAvailableZoneIds());
+
     public CreateEventDTO() {
+        Collections.sort(possibleTimezones);
     }
 
     public String getName() {
@@ -45,5 +59,33 @@ public class CreateEventDTO {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public List<String> getPossibleTimezones() {
+        return possibleTimezones;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
     }
 }
