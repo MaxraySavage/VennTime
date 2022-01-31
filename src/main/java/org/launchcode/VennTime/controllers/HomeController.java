@@ -42,7 +42,7 @@ public class HomeController {
             Event newEvent = dtoMapper.toEvent(createEventDTO);
             eventRepository.save(newEvent);
             return newEvent.getName();
-        }
+
     }
 
 
