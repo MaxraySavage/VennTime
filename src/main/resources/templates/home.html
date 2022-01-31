@@ -5,51 +5,9 @@
 
 <body>
 
-<form method="post" action="/">
-<!--Name, description, availability ranges, -->
-
-    <label>Name</label>
-    <input  th:field="${createEventDTO.name}"/>
-
-        <p th:errors="${createEventDTO.name}"></p>
-
-    <label>Description</label>
-    <textarea th:field="${createEventDTO.description}">
-        Event Description
-    </textarea>
-    <p th:errors="${createEventDTO.description}"></p>
-
-    <input type="date" th:field="${createEventDTO.date}">
-    <input type="submit"/>
-    <p th:errors="${createEventDTO.date}"></p>
-
-</form>
-
-
     <div class="container">
         <h1 class="page-header text-center">VennTime</h1>
     </div>
-
-<!--    <div class="container">-->
-
-<!--        <div class="row">-->
-<!--            <div class="col-6 green tall"> col 1</div>-->
-<!--            <div class="col-6 cream tall"> col 2</div>-->
-<!--        </div>-->
-
-<!--        <div class="row rowoverlay">-->
-<!--            <div class="col-5 red coloverlay">-->
-<!--                This is the col that should be on top of the rest-->
-<!--            </div>-->
-<!--            <div class="col-2 red coloverlay">-->
-<!--                This is the col that should be on top of the rest-->
-<!--            </div>-->
-<!--            <div class="col-5 red coloverlay">-->
-<!--                This is the col that should be on top of the rest-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--    </div>-->
 
     <form method="post" action="/">
     <div class="container-fluid">
@@ -62,6 +20,7 @@
         <div class="mt-5 row rowoverlay text-center">
             <div class="col-5 red coloverlay d-flex flex-column justify-content-center">
                 <label>Calendar</label>
+                <div id="app-calendar"></div>
             </div>
             <div class="col-2 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
@@ -93,50 +52,6 @@
 
     </div>
     </form>
-
-<!--        <form method="post" action="/">-->
-<!--        &lt;!&ndash;Name, description, availability ranges, &ndash;&gt;-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-6 green"></div>-->
-<!--                        <div class="col-md-6 cream"></div>-->
-<!--                </div>-->
-
-<!--            <div class="rowoverlay row g-3">-->
-<!--            <div class="col-md-5 coloverlay red">-->
-<!--                <label>Calendar</label>-->
-<!--            </div>-->
-
-<!--                    <div class="col-md-2 text-center coloverlay red">-->
-<!--                        <div class="form-group">-->
-<!--                         <label>Name</label>-->
-<!--                            <input th:field="${createEventDTO.name}" class="form-control"/>-->
-<!--                        </div>-->
-<!--                        <input type="submit"/>-->
-<!--                    </div>-->
-
-<!--                <div class="col-md-5 text-center coloverlay red">-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Availability Range</label>-->
-<!--                            <input type="date" th:field="${createEventDTO.date}" class="form-control">-->
-<!--                            <input type="time" name="startTime"class="form-control" />-->
-<!--                            <input type="time" name="endTime" class="form-control" />-->
-<!--                            <select th:field="${createEventDTO.timezone}" class="form-control" >-->
-<!--                                <th:block th:each="possibleTimezone : ${createEventDTO.getPossibleTimezones}">-->
-<!--                                    <option th:value="${possibleTimezone}" th:text="${possibleTimezone}"></option>-->
-<!--                                </th:block>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <textarea th:field="${createEventDTO.description}" class="form-control" placeholder="Description">-->
-<!--                            Event Description-->
-<!--                            </textarea>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--            </div>-->
-<!--    </form>-->
-<!--<hr>-->
 
 
 </body>
