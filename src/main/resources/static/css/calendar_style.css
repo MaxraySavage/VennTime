@@ -5,17 +5,17 @@
 }
 
 
-body {
+/*body {
 
     margin: 100px;
-}
+}*/
 
-#app-calendar {
+/*#app-calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    height: 100px;
-    width: 100px;
+    height: 500px;
+    width: 500px;
     background-color: white;
 
 }
@@ -44,4 +44,4 @@ body {
 .selected {
     background-color: var(--light-blue);
     color: white;
-}
+}*/
