@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @ResponseBody
-    @PostMapping("/")
+    @PostMapping("")
     public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) {
 
         if (errors.hasErrors()) {
@@ -39,6 +39,7 @@ public class HomeController {
             Event newEvent = dtoMapper.toEvent(createEventDTO);
             eventRepository.save(newEvent);
             return newEvent.getName();
+//        return "viewEvent";
     }
 
 
