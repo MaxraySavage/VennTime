@@ -1,28 +1,22 @@
 
-
-//import { isWeekend, getDayName } from "./date-helper.js";
-
-
-// add event handler to the target html element
+// fire event when entire document is loaded
 document.addEventListener('DOMContentLoaded', () => {
+
     const selectedDates = new Set();
 
     const isWeekend = day => {
-        // highlight saturday & sunday
         // 6 when its saturday, 0 when its sunday
         return day % 7 === 6 || day % 7 === 0;
     }
 
-
+    // return day names of the week on calendar
     const getDayName = day => {
-        // javascript datetime format
-        const date = new Date(Date.UTC(2022, 0, day));
+        const date = new Date(Date.UTC(2022, 1, day));
         // internationalization of datetime format
         return new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-
     }
 
-    // returns element with specified id
+    // add day names of the week just on the top first week on calendar
     const calendar = document.getElementById("app-calendar");
     const targetInput = document.getElementById(calendar.dataset.target);
 
@@ -31,23 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let name = "";
         if (day <= 7){
             const dayName = getDayName(day);
-            name = `<div class="name">${dayName}</div>`;    //template literals
+            name = `<div class="name">${dayName}</div>`;
         }
 
-
-        // adding node into DOM tree
-        // parses the specified text as HTML and inserts the resulting nodes into the DOM tree at specified position
         calendar.insertAdjacentHTML("beforeend",
         `<div class="day ${weekend ? "weekend" : ""}" data-date="2022-02-${day.toString().padStart(2,'0')}">
           ${name}${day}</div>`);
     }
 
-    // used to return a static NodeList of elements that match the css selector
+    // toggle select or unselect day(s) on calendar
     document.querySelectorAll("#app-calendar .day").forEach
     (day => {
-        // javascript event handler (event, function-to-run)        ...function to run when event is invoked
-        // target.addEventListener("event", function)
-        // target: html element
         day.addEventListener("click", event => {
             // classList property returns css class names of an element
             // toggle() method toggle between hide() and show() for the selected elements
