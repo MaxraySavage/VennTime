@@ -1,6 +1,7 @@
 package org.launchcode.VennTime.controllers;
 import org.launchcode.VennTime.data.EventRepository;
 import org.launchcode.VennTime.models.AbstractEntity;
+import org.launchcode.VennTime.models.Attendee;
 import org.launchcode.VennTime.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,35 +15,25 @@ import java.util.Optional;
 
 
 @Controller
+@RequestMapping(value = "/viewEvent")
 public class ViewEventController {
 
     @Autowired
     EventRepository eventRepository;
 
-//    @RequestMapping("")
-//    public String displayAllPlacesTraveled(Model model, @PathVariable int eventId){
-//        model.addAttribute("title", "view event");
-//        model.addAttribute("places", eventRepository.findById(eventId));
-//        return "viewEvent";
-//    }
-
-//    @GetMapping("viewEvent/{eventId}")
-    @PostMapping("{id}")
-    public String displayViewEventForm (HttpServletRequest request, Model model, @PathVariable("id") int id) {
-        Optional<Event> optionalEvent = eventRepository.findById(id);
-        model.addAttribute("title", "View Event");
-        if (optionalEvent.isPresent()) {
-            Event event = optionalEvent.get();
-            model.addAttribute("event", eventRepository.findById(id));
+    @GetMapping("/{id}")
+    public String displayViewEventForm (HttpServletRequest request, Model model, @PathVariable("id") String id) {
+        int idInt = Integer.parseInt(id,10);
+        Optional<Event> optionalEvent = eventRepository.findById(idInt);
+        if(optionalEvent.isEmpty()){
+            // If event not found redirect to home
+            return "redirect:";
         }
+        Event event = optionalEvent.get();
+        model.addAttribute("title", "View Event");
+        model.addAttribute("event", event);
+        model.addAttribute("attendee", new Attendee());
         return "viewEvent";
     }
 
-    @GetMapping("")
-    public String  processViewEventForm(@RequestParam int id) {
-        Optional<Event> optionalEvent = eventRepository.findById(id);
-
-     return "redirect:";
-
-    }
-    }
+}
