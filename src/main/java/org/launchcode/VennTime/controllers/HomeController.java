@@ -27,7 +27,7 @@ public class HomeController {
         return "home";
     }
 
-    @ResponseBody
+
     @PostMapping("")
     public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) {
 
@@ -36,12 +36,10 @@ public class HomeController {
             return "home";
         }
 
-            Event newEvent = dtoMapper.toEvent(createEventDTO);
-            eventRepository.save(newEvent);
-            return newEvent.getName();
-//        return "viewEvent";
+        Event newEvent = dtoMapper.toEvent(createEventDTO);
+        Event savedEvent = eventRepository.save(newEvent);
+        return "redirect:viewEvent/" + savedEvent.getId();
     }
-
 
 }
 
