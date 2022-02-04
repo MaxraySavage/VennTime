@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 @Controller
 public class HomeController {
@@ -32,10 +33,11 @@ public class HomeController {
 
     @ResponseBody
     @PostMapping("/")
-    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) {
+    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) throws ParseException {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
+            model.addAttribute("createEventDTO", createEventDTO);
             return "home";
         }
 
