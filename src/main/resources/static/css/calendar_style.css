@@ -1,23 +1,15 @@
-
 :root {
     --light-gray: #DADCE0;
     --light-blue: #1B9CE2;
 }
 
-
-/*body {
-
-    margin: 100px;
-}*/
-
-/*#app-calendar {
+#app-calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
     height: 500px;
     width: 500px;
     background-color: white;
-
 }
 
 
@@ -44,4 +36,4 @@
 .selected {
     background-color: var(--light-blue);
     color: white;
-}*/
+}
