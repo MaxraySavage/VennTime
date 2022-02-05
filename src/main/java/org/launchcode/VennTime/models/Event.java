@@ -18,11 +18,9 @@ public class Event extends AbstractEntity{
 @Size(min=7, max=500, message= "Add a description of event")
     private String description;
 
-@NotBlank(message= "Must select event times")
     @ElementCollection
     private List<AvailabilityRange> availabilityRanges;
 
-@NotBlank(message="Must add attendees")
     @OneToMany
     private List<Attendee> attendees;
 
