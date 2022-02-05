@@ -10,12 +10,12 @@ import java.util.List;
 @Entity
 public class Event extends AbstractEntity{
 
-@NotBlank(message= "Name field is required")
-@Size(min=2, max=50, message= "Name must be at least 3 characters long.")
+    @NotBlank(message= "Name field is required")
+    @Size(min=2, max=50, message= "Name must be at least 3 characters long.")
     private String name;
 
-@NotBlank(message= "Event description is required")
-@Size(min=7, max=500, message= "Add a description of event")
+    @NotBlank(message= "Event description is required")
+    @Size(min=7, max=500, message= "Add a description of event")
     private String description;
 
     @ElementCollection
