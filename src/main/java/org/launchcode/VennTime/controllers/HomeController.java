@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 @Controller
 public class HomeController {
@@ -28,11 +29,13 @@ public class HomeController {
     }
 
 
-    @PostMapping("")
-    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) {
+    @ResponseBody
+    @PostMapping("/")
+    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) throws ParseException {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
+            model.addAttribute("createEventDTO", createEventDTO);
             return "home";
         }
 

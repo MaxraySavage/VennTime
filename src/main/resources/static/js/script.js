@@ -2,7 +2,8 @@
 // fire event when entire document is loaded
 document.addEventListener('DOMContentLoaded', () => {
 
-    // return and highlight saturday and sunday on calendar
+    const selectedDates = new Set();
+
     const isWeekend = day => {
         // 6 when its saturday, 0 when its sunday
         return day % 7 === 6 || day % 7 === 0;
@@ -17,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // add day names of the week just on the top first week on calendar
     const calendar = document.getElementById("app-calendar");
+    const targetInput = document.getElementById(calendar.dataset.target);
+
     for (let day = 1; day <= 31; day++){
         const weekend = isWeekend(day);
         let name = "";
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         calendar.insertAdjacentHTML("beforeend",
-        `<div class="day ${weekend ? "weekend" : ""}">
+        `<div class="day ${weekend ? "weekend" : ""}" data-date="2022-02-${day.toString().padStart(2,'0')}">
           ${name}${day}</div>`);
     }
 
@@ -37,6 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // classList property returns css class names of an element
             // toggle() method toggle between hide() and show() for the selected elements
             event.currentTarget.classList.toggle("selected");
+            const dateString = day.dataset.date;
+            if(selectedDates.has(dateString)) {
+                console.log(`${dateString} has already been selected`);
+                selectedDates.delete(dateString)
+            } else {
+                selectedDates.add(dateString);
+                console.log(`${dateString} added to selected dates`);
+            }
+            targetInput.value = Array.from(selectedDates).join(',');
         })
     })
 })
