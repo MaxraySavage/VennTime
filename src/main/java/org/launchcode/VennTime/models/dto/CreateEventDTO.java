@@ -20,13 +20,8 @@ public class CreateEventDTO {
     @Size(min=7, max=500, message= "Add a description of event")
     private String description;
 
-    @NotNull(message= "Select a Date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
-
-    /* @NotBlank(message= "Must select at least one date")
-    private String selectedDates; */
-
+    @NotBlank(message= "Must select at least one date")
+    private String selectedDates;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime startTime;
