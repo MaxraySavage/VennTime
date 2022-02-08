@@ -31,7 +31,7 @@ public class HomeController {
     }
 
     @ResponseBody
-    @PostMapping("/")
+    @PostMapping("/{id}")
     public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) {
 
         if (errors.hasErrors()) {
