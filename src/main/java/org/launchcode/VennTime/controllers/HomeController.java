@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 @Controller
 public class HomeController {
@@ -30,21 +29,20 @@ public class HomeController {
         return "home";
     }
 
-    @ResponseBody
-    @PostMapping("/{id}")
-    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) {
+
+    @PostMapping("/")
+    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) throws ParseException {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
+            model.addAttribute("createEventDTO", createEventDTO);
             return "home";
         }
 
-            Event newEvent = dtoMapper.toEvent(createEventDTO);
-            eventRepository.save(newEvent);
-            return newEvent.getName();
-
+        Event newEvent = dtoMapper.toEvent(createEventDTO);
+        Event savedEvent = eventRepository.save(newEvent);
+        return "redirect:viewEvent/" + savedEvent.getId();
     }
-
 
 }
 
