@@ -31,37 +31,78 @@
             </div>
         </div>
     </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 green tall"></div>
             <div class="col-8 cream tall"></div>
         </div>
 
+<!--        headers-->
         <div class="mt-5 row rowoverlay text-center">
-            <div class="col-4 red coloverlay d-flex flex-column justify-content-center">
-                <div class="container-fluid d-flex flex-column vh-100 overflow-auto">
-                    <h6 class="lead">Your Availability</h6>
-                    <div class="container">
-                        <select class="form-control bg-secondary p-4 m-3 justify-content-center" size="8" multiple aria-label= "multiple select">
-                            <option class="p-3 mb-3 bg-primary text-white text-center">1:30 pm</option>
-                            <option class="p-3 mb-3 bg-primary text-white text-center">2:00 pm</option>
-                            <option class="p-3 mb-3 bg-primary text-white text-center">2:30 pm</option>
-                            <option class="p-3 mb-3 bg-primary text-white text-center">3:00 pm</option>
-                            <option class="p-3 mb-3 bg-primary text-white text-center">3:30 pm</option>
-                            <option class="p-3 mb-3 bg-primary text-white text-center">4:00 pm</option>
-                            <option class="p-3 mb-3 bg-primary text-white text-center">4:30 pm</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="col-4 justify-content-center">
+                <h6 class="lead">Your Availability</h6>
             </div>
-
-            <div class="col-8 red coloverlay d-flex flex-column justify-content-center">
-                <div class="container">
-                    <h6 class="lead">Group Availability</h6>
-                </div>
+            <div class="col-8 justify-content-center">
+                <h6 class="lead">Group Availability</h6>
             </div>
         </div>
+
+<!--        maybe formatting-->
+<!--        <div class="container-fluid d-flex flex-column vh-100 overflow-auto">-->
+
+        <!--        table row-->
+        <div class="mt-5 row rowoverlay text-center">
+            <div class="col-12 red coloverlay d-flex flex-column justify-content-center">
+                    <!--  for each loop over Event availability ranges -->
+                <div class="container">
+                <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Attendees</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Times</th>
+                                    <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
+                                    <th:block th:value="${event.availabilityRanges}" th:each="availabilityRange : ${availabilityRanges}">
+                                        <td>
+                                        <div th:text=th:data-start-time="availabilityRange.startTime"></div>
+                                        <div th:text=th:data-start-time="availabilityRange.endTime"></div>
+                                        </td>
+                                    </th:block>
+                                    <!--  </select>-->
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
 </form>
+<!--                    <div class="container">-->
+<!--                        <select class="form-control bg-secondary p-4 m-3 justify-content-center" size="8" multiple aria-label= "multiple select">-->
+<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">1:30 pm</option>-->
+<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">2:00 pm</option>-->
+<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">2:30 pm</option>-->
+<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">3:00 pm</option>-->
+<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">3:30 pm</option>-->
+<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">4:00 pm</option>-->
+<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">4:30 pm</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+
+<!--                old format with two columns-->
+<!--            <div class="col-8 red coloverlay d-flex flex-column justify-content-center">-->
+<!--                <div class="container">-->
+<!--                    <h6 class="lead">Group Availability</h6>-->
+<!--                </div>-->
+<!--            </div>-->
+
 
 </body>
 </html>
