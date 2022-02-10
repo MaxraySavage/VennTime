@@ -52,3 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 })
+/* Getting attendee availability */
+const attendeeAvailability = document.querySelectorAll('.dataAttendeeList').toString();
+
+const attendeeList = attendeeAvailability.split([,]);
+
+const numberOfAttendees = attendeeList.length;
+
+// Put each attendee in the array in individual box
+const container = document.getElementById (".attendeeAvailabilityRow");
+
+for(const i=0; i < numberOfAttendees; i++) {
+
+container.innerHTML += "<div class = 'attendeeAvailabilityRow'> + attendeeList[i] </div>";}
+
+
+
