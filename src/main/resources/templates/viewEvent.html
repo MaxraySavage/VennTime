@@ -38,7 +38,8 @@
             <div class="col-8 cream tall"></div>
         </div>
 
-<!--        headers-->
+        <!--        headers-->
+        <div class="container"></div>
         <div class="mt-5 row rowoverlay text-center">
             <div class="col-4 justify-content-center">
                 <h6 class="lead">Your Availability</h6>
@@ -47,16 +48,17 @@
                 <h6 class="lead">Group Availability</h6>
             </div>
         </div>
+    </div>
 
-<!--        maybe formatting-->
-<!--        <div class="container-fluid d-flex flex-column vh-100 overflow-auto">-->
-
-        <!--        table row-->
+    <!--        table row-->
+    <div class="container">
         <div class="mt-5 row rowoverlay text-center">
             <div class="col-12 red coloverlay d-flex flex-column justify-content-center">
-                    <!--  for each loop over Event availability ranges -->
+                <!--  for each loop over Event availability ranges -->
                 <div class="container">
-                <table class="table table-striped">
+                    <div class="timeTable">
+                        <!--                    <th:block th:value="${createEventDTO.selectedDates}" th:each="dates : ${selectedDates}">-->
+                        <table class="table table-striped" th:value="${createEventDTO.selectedDates}" th:each="dates : ${selectedDates}">
                             <thead>
                             <tr>
                                 <th scope="col">Date</th>
@@ -66,23 +68,28 @@
                             <tbody>
                             <tr>
                                 <th scope="row">Times</th>
-                                    <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
-                                    <th:block th:value="${event.availabilityRanges}" th:each="availabilityRange : ${availabilityRanges}">
-                                        <td>
-                                        <div th:text=th:data-start-time="availabilityRange.startTime"></div>
-                                        <div th:text=th:data-start-time="availabilityRange.endTime"></div>
-                                        </td>
-                                    </th:block>
-                                    <!--  </select>-->
+                                <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
+                                <th:block th:value="${event.availabilityRanges}" th:each="availabilityRange : ${availabilityRanges}">
+                                    <td>
+                                        <div class="text-black" th:text=th:data-start-time="availabilityRange.startTime"></div>
+                                        <div class="text-black" th:text=th:data-start-time="availabilityRange.endTime"></div>
+                                    </td>
+                                </th:block>
+                                <!--  </select>-->
                             </tr>
                             </tbody>
                         </table>
-                        </div>
+                        <!--                    </th:block>-->
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
     </div>
 
 </form>
+
+<!--old formatting-->
 <!--                    <div class="container">-->
 <!--                        <select class="form-control bg-secondary p-4 m-3 justify-content-center" size="8" multiple aria-label= "multiple select">-->
 <!--                            <option class="p-3 mb-3 bg-primary text-white text-center">1:30 pm</option>-->
