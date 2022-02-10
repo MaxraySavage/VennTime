@@ -1,7 +1,39 @@
 
+/*-------- new content below ---------*/
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-//import { isWeekend, getDayName } from "./date-helper.js";
 
+    // date.js library
+    const date = new Date();
+    const cday = date.getDate();
+    const wday = days[date.getDay()];
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+
+
+    console.log(date);
+    console.log(cday);
+    console.log("weekday: " + wday);
+    console.log("calendar: " + month + "/" + cday + "/" + year);
+
+    document.querySelector(".date h1").innerHTML = month;
+    document.querySelector(".date p").innerHTML = date.toDateString();
+
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    console.log("last day of the month: " + lastDay);
+
+
+    // calendar first day starts at what index ?
+    // date.setDate(1);
+
+    // const firstDayIndex = date.getDay();
+    // console.log(firstDayIndex);
+
+
+
+
+/*-------- existing content below ---------*/
 
 // add event handler to the target html element
 document.addEventListener('DOMContentLoaded', () => {

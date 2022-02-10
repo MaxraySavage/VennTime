@@ -3,6 +3,12 @@
     --light-blue: #1B9CE2;
 }
 
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Supermercado One', cursive;
+}
+
 #app-calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -37,3 +43,47 @@
     background-color: var(--light-blue);
     color: white;
 }
+
+/*-------- newly added ----------*/
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    text-align: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0,0,0,0.8);
+}
+
+.month i {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.month h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.2rem;
+}
+
+.month p {
+    font-size: 1.1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
