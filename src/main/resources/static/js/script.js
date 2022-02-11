@@ -61,21 +61,27 @@ document.addEventListener('DOMContentLoaded', () => {
         serverTimeTextSpan.innerText = dateObj.getDate();
     })
 
+//    const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
+//    attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
+//        const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
+//        attendeeAvailabilityGraphRow.innerText = attendeeList.length
+//    })
+
 
 })
-/* Getting attendee availability */
-const attendeeAvailability = document.querySelectorAll('.dataAttendeeList').toString();
-
-const attendeeList = attendeeAvailability.split([,]);
-
-const numberOfAttendees = attendeeList.length;
-
-// Put each attendee in the array in individual box
-const container = document.getElementById (".attendeeAvailabilityRow");
-
-for(const i=0; i < numberOfAttendees; i++) {
-
-container.innerHTML += "<div class = 'attendeeAvailabilityRow'> + attendeeList[i] </div>";}
+///* Getting attendee availability */
+//const attendeeAvailability = document.querySelectorAll('.dataAttendeeList').toString();
+//
+//const attendeeList = attendeeAvailability.split([,]);
+//
+//const numberOfAttendees = attendeeList.length;
+//
+//// Put each attendee in the array in individual box
+//const container = document.getElementById (".attendeeAvailabilityRow");
+//
+//for(const i=0; i < numberOfAttendees; i++) {
+//
+//container.innerHTML += "<div class = 'attendeeAvailabilityRow'> + attendeeList[i] </div>";}
 
 
 
