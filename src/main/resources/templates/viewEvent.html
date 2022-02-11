@@ -57,29 +57,34 @@
                 <!--  for each loop over Event availability ranges -->
                 <div class="container">
                     <div class="timeTable">
-                        <!--                    <th:block th:value="${createEventDTO.selectedDates}" th:each="dates : ${selectedDates}">-->
-                        <table class="table table-striped" th:value="${createEventDTO.selectedDates}" th:each="dates : ${selectedDates}">
+                        <!-- <th:block th:value="${createEventDTO.selectedDates}" th:each="dates : ${selectedDates}">-->
+                        <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Attendees</th>
+                                <th>
+                                    <div th:value="${createEventDTO.selectedDates}" th:each="dates : ${selectedDates}">
+                                        <div th:text="selectedDates"></div>
+                                    </div>
+                                </th>
+
+                                <th>Attendees</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">Times</th>
+                                <th>Times</th>
                                 <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
-                                <th:block th:value="${event.availabilityRanges}" th:each="availabilityRange : ${availabilityRanges}">
+                                <th:block th:value="${event.availabilityRanges}" th:each="availabilityRange : ${#strings.arraySplit(availabilityRanges, ',')}">
                                     <td>
                                         <div class="text-black" th:text=th:data-start-time="availabilityRange.startTime"></div>
-                                        <div class="text-black" th:text=th:data-start-time="availabilityRange.endTime"></div>
+                                        <div class="text-black" th:text=th:data-end-time="availabilityRange.endTime"></div>
                                     </td>
                                 </th:block>
                                 <!--  </select>-->
                             </tr>
                             </tbody>
                         </table>
-                        <!--                    </th:block>-->
+                        <!-- </th:block>-->
                     </div>
                 </div>
             </div>

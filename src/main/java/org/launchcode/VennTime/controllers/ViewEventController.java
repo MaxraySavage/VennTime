@@ -31,9 +31,17 @@ public class ViewEventController {
             return "redirect:";
         }
         Event event = optionalEvent.get();
+
+//        for loop or conditional? how do i access the array? do i need to convert the types of availability
+//        if(event.availabilityRanges.contains("")){
+//            int[] times = event.availabilityRanges.split(",");
+//        }
+
         model.addAttribute("title", "View Event");
         model.addAttribute("event", event);
         model.addAttribute("attendee", new Attendee());
+
+
 
         return "viewEvent";
     }
