@@ -55,6 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
+    const serverTimeTextSpans = document.querySelectorAll(".server-time-text");
+    serverTimeTextSpans.forEach((serverTimeTextSpan)=>{
+        let dateObj = new Date(serverTimeTextSpan.dataset.serverTime);
+        serverTimeTextSpan.innerText = dateObj.getDate();
+    })
+
+
 })
 /* Getting attendee availability */
 const attendeeAvailability = document.querySelectorAll('.dataAttendeeList').toString();
