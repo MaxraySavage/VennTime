@@ -64,6 +64,7 @@
                                 <th>
                                     Available Times
                                     <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}"></span>
+                                    <span th:text="${availabilityRange.getFifteenMinuteChunks()}"></span>
                                 </th>
 
                                 <th>Attendees</th>
