@@ -87,3 +87,14 @@ border-width: 0px 0px 0px 5px;
     background-color: var(--light-blue);
     color: white;
 }
+
+/*--------------------------------------------ViewEvent Form -----------------------------------------------------*/
+
+.vertical-scrollable> .row {
+          position: absolute;
+          top: 120px;
+          bottom: 100px;
+          left: 180px;
+          width: 50%;
+          overflow-y: scroll;
+        }

@@ -36,6 +36,7 @@ public class Event extends AbstractEntity{
         this.attendees = attendees;
     }
 
+
     public String getName() {
         return name;
     }
