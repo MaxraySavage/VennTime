@@ -2,6 +2,7 @@ package org.launchcode.VennTime.controllers;
 import org.launchcode.VennTime.data.EventRepository;
 import org.launchcode.VennTime.models.AbstractEntity;
 import org.launchcode.VennTime.models.Attendee;
+import org.launchcode.VennTime.models.AvailabilityRange;
 import org.launchcode.VennTime.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,18 @@ public class ViewEventController {
             return "redirect:";
         }
         Event event = optionalEvent.get();
+
+//        for loop or conditional? how do i access the array? do i need to convert the types of availability
+//        if(event.availabilityRanges.contains("")){
+//            int[] times = event.availabilityRanges.split(",");
+//        }
+
         model.addAttribute("title", "View Event");
         model.addAttribute("event", event);
         model.addAttribute("attendee", new Attendee());
+
+
+
         return "viewEvent";
     }
 
