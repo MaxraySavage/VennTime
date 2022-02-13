@@ -61,7 +61,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <h6 class="display-6 text-left">
-                                        <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}"></span>
+                                        *Dates* <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}"></span>
                                     </h6>
                                     <tr>
 
@@ -75,6 +75,12 @@
                                         <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
                                         <td>
                                             <div class="viewAvailabilityBlock" th:data-start-time="${availabilityRange.startTime}" th:data-end-time="${availabilityRange.endTime}">
+                                                *Iterating 15 minute time slots*
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                *other available attendees*
                                             </div>
                                         </td>
                                         <!--  </select>-->
