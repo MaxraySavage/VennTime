@@ -39,53 +39,54 @@
         </div>
 
         <!--        headers-->
-        <div class="container"></div>
-        <div class="mt-5 row rowoverlay text-center">
-            <div class="col-4 justify-content-center">
-                <h6 class="lead">Your Availability</h6>
-            </div>
-            <div class="col-8 justify-content-center">
-                <h6 class="lead">Group Availability</h6>
+        <div class="container">
+            <div class="mt-5 row rowoverlay text-center">
+                <div class="col-4 justify-content-center">
+                    <h6 class="lead">Your Availability</h6>
+                </div>
+                <div class="col-8 justify-content-center">
+                    <h6 class="lead">Group Availability</h6>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!--        table row-->
-    <div class="container">
-        <div class="mt-5 row rowoverlay text-center">
-            <div class="col-12 red coloverlay d-flex flex-column justify-content-center">
-                <!--  for each loop over Event availability ranges -->
-                <div class="container">
-                    <div class="timeTable">
-                        <th:block th:each="availabilityRange : ${event.availabilityRanges}">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>
-                                    Available Times
-                                    <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}"></span>
-                                </th>
+        <!--        table row-->
+        <div class="container">
+            <div class="mt-5 row rowoverlay text-center">
+                <div class="col-12 red coloverlay d-flex flex-column justify-content-center">
+                    <!--  for each loop over Event availability ranges -->
+                    <div class="container">
+                        <div class="timeTable">
+                            <th:block th:each="availabilityRange : ${event.availabilityRanges}">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <h6 class="display-6 text-left">
+                                        <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}"></span>
+                                    </h6>
+                                    <tr>
 
-                                <th>Attendees</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th>Times</th>
-                                <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
-                                    <td>
-                                        <div class="viewAvailabilityBlock" th:data-start-time="${availabilityRange.startTime}" th:data-end-time="${availabilityRange.endTime}"></div>
-                                    </td>
-                                <!--  </select>-->
-                            </tr>
-                            </tbody>
-                        </table>
-                         </th:block>
+                                        <th>Available Times</th>
+
+                                        <th>Available Attendees</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
+                                        <td>
+                                            <div class="viewAvailabilityBlock" th:data-start-time="${availabilityRange.startTime}" th:data-end-time="${availabilityRange.endTime}">
+                                            </div>
+                                        </td>
+                                        <!--  </select>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </th:block>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 </form>
