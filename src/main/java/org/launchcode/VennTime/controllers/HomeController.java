@@ -46,7 +46,7 @@ public class HomeController {
         LocalTime endTime = createEventDTO.getEndTime();
 
         if (startTime.isAfter(endTime)) {
-            errors.rejectValue("startTime", "startTime.isAfterEndTime", "Please enter a valid start and end time.");
+            errors.rejectValue("startTime", "startTime.isAfterEndTime", "Please enter a start time that occurs before the end time.");
             model.addAttribute("title", "Create Event");
             return "home";
         }
