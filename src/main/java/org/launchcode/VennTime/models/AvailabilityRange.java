@@ -17,7 +17,7 @@ public class AvailabilityRange {
     private Timestamp startTime;
 
     private Timestamp endTime;
-
+    
     public Timestamp getStartTime() {
         return startTime;
     }

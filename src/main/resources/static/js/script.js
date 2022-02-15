@@ -1,3 +1,5 @@
+// Use luxon instead of DateTime
+const DateTime = luxon.DateTime;
 
 // fire event when entire document is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -55,10 +57,23 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
+
     const serverTimeTextSpans = document.querySelectorAll(".server-time-text");
     serverTimeTextSpans.forEach((serverTimeTextSpan)=>{
-        let dateObj = new Date(serverTimeTextSpan.dataset.serverTime);
-        serverTimeTextSpan.innerText = dateObj.getDate();
+        const formatOption = serverTimeTextSpan.dataset.format;
+        let timeString = serverTimeTextSpan.dataset.serverTime;
+        timeString = timeString.split(' ').join('T');
+
+        let dateObj = DateTime.fromISO(timeString);
+
+        if(!formatOption || formatOption === 'full' ){
+            serverTimeTextSpan.innerText = dateObj.toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+        } else if (formatOption === 'date') {
+            serverTimeTextSpan.innerText = dateObj.toLocaleString()
+        } else if (formatOption === 'time') {
+             serverTimeTextSpan.innerText = dateObj.toLocaleString(DateTime.TIME_SIMPLE);
+        }
+
     })
 
 
