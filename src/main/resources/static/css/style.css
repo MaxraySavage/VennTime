@@ -6,10 +6,11 @@ html,body {
 }
 
 .container-fluid {
-    position:relative;
+  /*  position:relative; */
 }
 
 .tall {
+    height: 100%;
     min-height: 100vh;
 }
 
