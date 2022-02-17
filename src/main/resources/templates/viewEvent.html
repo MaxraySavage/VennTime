@@ -33,14 +33,14 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-4 green tall"></div>
-            <div class="col-8 cream tall"></div>
+        <div class="row rowoverlay">
+            <div class="col-4 coloverlay green tall"></div>
+            <div class="col-8 coloverlay cream tall"></div>
         </div>
 
         <!--        headers-->
         <div class="container">
-            <div class="mt-5 row rowoverlay text-center">
+            <div class="mt-5 row text-center">
                 <div class="col-4 justify-content-center">
                     <h6 class="lead">Your Availability</h6>
                 </div>
@@ -51,8 +51,8 @@
         </div>
         <!--        table row-->
         <div class="container">
-            <div class="mt-5 row rowoverlay text-center">
-                <div class="col-12 red coloverlay d-flex flex-column justify-content-center">
+            <div class="mt-5 row text-center">
+                <div class="col-12 red d-flex flex-column justify-content-center">
                     <!--  for each loop over Event availability ranges -->
                     <div class="container">
                         <div class="timeTable">
@@ -71,10 +71,10 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr th:each="timeChunk : ${availabilityRange.getFifteenMinuteChunks()}">
                                         <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
                                         <td>
-                                            <div class="viewAvailabilityBlock" th:data-start-time="${availabilityRange.startTime}" th:data-end-time="${availabilityRange.endTime}">
+                                            <div class="viewAvailabilityBlock" th:text="${timeChunk}">
                                                 *Iterating 15 minute time slots*
                                             </div>
                                         </td>
