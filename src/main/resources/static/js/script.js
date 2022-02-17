@@ -1,17 +1,18 @@
 
 // document.addEventListener('DOMContentLoaded', () => {
 
-const renderCalendar = () => {
 
+const renderCalendar = () => {
+    const date = new Date();
+    // date.setDate(1);
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     // date.js library
-    const date = new Date();
-    const cday = date.getDate();
-    console.log(cday);
+
+    const cday = date.getDate();            //same as new Date().getDate();
     const wday = days[date.getDay()];
-    const premonth = date.getMonth();
+    const premonth = date.getMonth();       //same as new Date().getMonth();
     const currMonth = date.getMonth()+1;
     const nextMonth = date.getMonth()+2;
     const monthletter = months[date.getMonth()];
@@ -22,6 +23,9 @@ const renderCalendar = () => {
     const lastDayIdx = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();   //sun=0, mon=1, tue=2 etc
     const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();         // last day of the previous month
     const nextDays = 7 - lastDayIdx - 1;
+    console.log("its working!")
+    console.log(cday, premonth);
+
 
     // calendar top part with the month year date weekday names
     document.querySelector(".date h1").innerHTML = monthletter;
@@ -31,16 +35,18 @@ const renderCalendar = () => {
     //start of the main body of calendar
     const calendar = document.querySelector("#app-calendar");
 
-    const isWeekend = cday => {
-        return cday % 7 === 6 || cday % 7 === 0;
-    }
-
 
     /* function that takes a monthday and returns a weekday */
     const getdayOfweek = (dayOfMonth) => {
         // factor time zone with: new Date(Date.UTC(year, month, dayIdx));
         const date = new Date(year, currMonth, dayOfMonth);
         return new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
+    }
+
+
+    const isWeekend = cday => {
+        return getdayOfweek(cday) === "Sat" || getdayOfweek(cday) === "Sun";
+        // return cday % 7 === 6 || cday % 7 === 0;
     }
 
 
@@ -64,19 +70,23 @@ const renderCalendar = () => {
     for (let day = 1; day <= lastDay; day++){
         const weekend = isWeekend(day);
         let nameOfWeek = "";
-        if (day <= 7-firstDayIdx){
+
+
+        if (day === cday){
+            nameOfWeek += `<div class="today">today</div>`;
+        }
+
+        else if (day <= 7-firstDayIdx){
             const dayName = getdayOfweek(day);
+            console.log("day name: " + dayName);
             nameOfWeek = `<div class="nameOfWeek">${dayName}</div>`;
         }
 
-        else if (day === cday){
-            let today = "";
-            today += `<div class="today">${day}</div>`;
-        }
 
         calendar.insertAdjacentHTML("beforeend",
         `<div class="dayOfMonth ${weekend ? "weekendDays" : ""}">
         ${nameOfWeek}${day}</div>`);
+
     }
 
 
@@ -106,14 +116,16 @@ const renderCalendar = () => {
 
     renderCalendar();
 
-    document.querySelector('.prev').addEventListener('click', () => {
+    document.querySelector('.prev-Days').addEventListener('click', () => {
+        calendar.innerHTML = "";
         date.setMonth(date.getMonth()-1);
         renderCalendar();
 
     })
 
 
-    document.querySelector('.next').addEventListener('click', () => {
+    document.querySelector('.next-days').addEventListener('click', () => {
+        calendar.innerHTML = "";
         date.setMonth(date.getMonth()+1);
         renderCalendar();
 
