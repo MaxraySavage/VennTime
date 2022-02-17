@@ -66,7 +66,10 @@
                                     <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}"></span>
                                 </th>
 
-                                <th>Attendees</th>
+                                <th>Attendees
+                                <!--<span class="attendeeAvailabilityGraphRow" th:data-attendees="${attendee.name}"></span>-->
+                                </th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -78,6 +81,8 @@
                                     </td>
                                 <td>
                                   <div class="attendeeAvailabilityGraphRow" data-attendees="Kirsten, Maxray, Jace, Yeshi"> </div>
+                                    <div id="containerViewAttendees"></div>
+
 
                                 </td>
                                 <!--  </select>-->
