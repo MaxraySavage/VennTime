@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
         //attendeeAvailabilityGraphRow.innerText = attendeeList.length;
 
-const container = document.getElementById("containerViewAttendees");
+//const container = document.getElementById("containerViewAttendees");
         for(let i=0; i < attendeeList.length; i++) {
-      container.innerHTML += '<div class="attendeeAvailabilityGraphRow">' + attendeeList[i] + '</div>';
+     attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphRow">' + attendeeList[i] + '</div>';
         }
     })
 
