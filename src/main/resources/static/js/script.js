@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //const container = document.getElementById("containerViewAttendees");
         for(let i=0; i < attendeeList.length; i++) {
-     attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphRow">' + attendeeList[i] + '</div>';
+     attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphBlock">' + attendeeList[i] + '</div>';
         }
     })
 

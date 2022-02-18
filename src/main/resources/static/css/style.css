@@ -118,9 +118,14 @@ border-width: 0px 0px 0px 5px;
      font-size: 20px;
      font-weight: 100;
      color: #ECDDB3;
+}
 
-
-
+.attendeeAvailabilityGraphBlock{
+display:flex;
+margin:5px;
+flex-basis: fit-content
+box-sizing: border-box;
+;
 
 
 
