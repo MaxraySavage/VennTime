@@ -12,7 +12,7 @@
 <form method="post" action="/">
     <div class="container">
         <div class="row my-3">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="d-inline">
                     <label>Name</label>
                     <input th:field="${attendee.name}" class="form-control">
@@ -22,12 +22,8 @@
                     <input type="text" class="form-control"/>
                 </div>
             </div>
-            <div class="col-4 text-center">
-                <p class="lead">Event name:</p>
-                <h3 th:text="${event.name}"></h3>
-            </div>
-            <div class="col-4 text-center p-5">
-                <input type="submit"/>
+            <div class="col-6 text-center p-5">
+                <input value="Add Time" type="submit" class="btn btn-primary btn-lg"/>
             </div>
         </div>
     </div>
@@ -41,51 +37,49 @@
         <!--        headers-->
         <div class="container">
             <div class="mt-5 row text-center">
-                <div class="col-4 justify-content-center">
-                    <h6 class="lead">Your Availability</h6>
-                </div>
-                <div class="col-8 justify-content-center">
-                    <h6 class="lead">Group Availability</h6>
+                <div class="col-12 p-3 my-3 text-center">
+                    <h4 class="display-6 fs-3">Event name:</h4>
+                    <h3 th:text="${event.name}"></h3>
                 </div>
             </div>
         </div>
-        <!--        table row-->
+
+        <!--        table row in bootstrap-->
         <div class="container">
             <div class="mt-5 row text-center">
                 <div class="col-12 red d-flex flex-column justify-content-center">
-                    <!--  for each loop over Event availability ranges -->
+
+<!--table container of iterating start time/dates for individual and group availability-->
                     <div class="container">
                         <div class="timeTable">
                             <th:block th:each="availabilityRange : ${event.availabilityRanges}">
-                                <table class="table table-hover">
+                                <table class="table table-borderless">
                                     <thead>
-                                    <h6 class="display-6 text-left">
-                                        *Dates* <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}" data-format="full"></span>
+                                    <h6 class="fs-4 lead text-start fst-italic p-3">
+                                        <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}" data-format="full"></span>
                                     </h6>
                                     <tr>
 
-                                        <th>Available Times</th>
+                                        <th class="text-start">Your Availability</th>
 
 
-                                        <th>Available Attendees</th>
+                                        <th>Group Availability</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="timeChunk : ${availabilityRange.getFifteenMinuteChunks()}">
-                                        <!-- <select class="selectpicker form-control" multiple data-live-search="true">-->
-                                        <td>
-                                            <div class="viewAvailabilityBlock">
+                                        <td class="text-start">
+                                            <input type="checkbox" class="viewAvailabilityBlock">
                                                 <span class="server-time-text"
                                                       th:data-server-time="${timeChunk}"
                                                       data-format="time"></span>
-                                            </div>
+                                            </input>
                                         </td>
                                         <td>
                                             <div>
                                                 *other available attendees*
                                             </div>
                                         </td>
-                                        <!--  </select>-->
                                     </tr>
                                     </tbody>
                                 </table>
@@ -98,28 +92,6 @@
     </div>
 
 </form>
-
-<!--old formatting-->
-<!--                    <div class="container">-->
-<!--                        <select class="form-control bg-secondary p-4 m-3 justify-content-center" size="8" multiple aria-label= "multiple select">-->
-<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">1:30 pm</option>-->
-<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">2:00 pm</option>-->
-<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">2:30 pm</option>-->
-<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">3:00 pm</option>-->
-<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">3:30 pm</option>-->
-<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">4:00 pm</option>-->
-<!--                            <option class="p-3 mb-3 bg-primary text-white text-center">4:30 pm</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-
-
-<!--                old format with two columns-->
-<!--            <div class="col-8 red coloverlay d-flex flex-column justify-content-center">-->
-<!--                <div class="container">-->
-<!--                    <h6 class="lead">Group Availability</h6>-->
-<!--                </div>-->
-<!--            </div>-->
-
 
 </body>
 </html>
