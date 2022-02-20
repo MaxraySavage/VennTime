@@ -9,7 +9,7 @@
     <h1 class="display-1 page-header text-center">VennTime</h1>
 </div>
 
-<form method="post" action="/">
+<form method="post">
     <div class="container">
         <div class="row my-3">
             <div class="col-4">
@@ -78,6 +78,7 @@
                                                 <span class="server-time-text"
                                                       th:data-server-time="${timeChunk}"
                                                       data-format="time"></span>
+                                                <input type="checkbox" name="availableStartTimes" th:value="${timeChunk}" />
                                             </div>
                                         </td>
                                         <td>

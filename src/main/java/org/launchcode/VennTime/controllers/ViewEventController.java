@@ -4,12 +4,15 @@ import org.launchcode.VennTime.models.AbstractEntity;
 import org.launchcode.VennTime.models.Attendee;
 import org.launchcode.VennTime.models.AvailabilityRange;
 import org.launchcode.VennTime.models.Event;
+import org.launchcode.VennTime.models.dto.CreateEventDTO;
+import org.launchcode.VennTime.models.dto.ViewEventDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,8 +37,35 @@ public class ViewEventController {
         model.addAttribute("title", "View Event");
         model.addAttribute("event", event);
         model.addAttribute("attendee", new Attendee());
+        model.addAttribute("viewEventDTO", new ViewEventDTO());
+
 
         return "viewEvent";
+    }
+
+    @ResponseBody
+    @PostMapping("/{id}")
+    public String processViewEventForm (
+            HttpServletRequest request,
+            Model model,
+            @PathVariable("id") String id,
+            @ModelAttribute @Valid ViewEventDTO viewEventDTO
+    ) {
+        int idInt = Integer.parseInt(id,10);
+        Optional<Event> optionalEvent = eventRepository.findById(idInt);
+        if(optionalEvent.isEmpty()){
+            // If event not found redirect to home
+            return "redirect:";
+        }
+
+        String testString = "";
+
+        for(String item : viewEventDTO.getAvailableStartTimes()){
+            testString += item + "/n";
+        }
+
+
+        return testString;
     }
 
 }
