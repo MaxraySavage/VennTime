@@ -1,3 +1,5 @@
+// Use luxon instead of DateTime
+const DateTime = luxon.DateTime;
 
 // fire event when entire document is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -55,38 +57,31 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
+
     const serverTimeTextSpans = document.querySelectorAll(".server-time-text");
     serverTimeTextSpans.forEach((serverTimeTextSpan)=>{
-        let dateObj = new Date(serverTimeTextSpan.dataset.serverTime);
-        serverTimeTextSpan.innerText = dateObj.getDate();
-    })
+        const formatOption = serverTimeTextSpan.dataset.format;
+        let timeString = serverTimeTextSpan.dataset.serverTime;
+        timeString = timeString.split(' ').join('T');
 
-    const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
-    attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
-        const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
-        //attendeeAvailabilityGraphRow.innerText = attendeeList.length;
+        let dateObj = DateTime.fromISO(timeString);
 
-//const container = document.getElementById("containerViewAttendees");
-        for(let i=0; i < attendeeList.length; i++) {
-     attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphBlock">' + attendeeList[i] + '</div>';
+        if(!formatOption || formatOption === 'full' ){
+            serverTimeTextSpan.innerText = dateObj.toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+        } else if (formatOption === 'date') {
+            serverTimeTextSpan.innerText = dateObj.toLocaleString()
+        } else if (formatOption === 'time') {
+             serverTimeTextSpan.innerText = dateObj.toLocaleString(DateTime.TIME_SIMPLE);
         }
+
     })
 
+//    button function for time slots in viewEvent
+
+    let timeSlotBtns = document.getElementById("timeChunkBtn");
+
+        $(timeSlotBtns).click(function(){
+        $(timeSlotBtns).addClass("active");
+    });
 
 })
-///* Getting attendee availability */
-//const attendeeAvailability = document.querySelectorAll('.dataAttendeeList').toString();
-//
-//const attendeeList = attendeeAvailability.split([,]);
-//
-//const numberOfAttendees = attendeeList.length;
-//
-//// Put each attendee in the array in individual box
-//const container = document.getElementById (".attendeeAvailabilityGraphRow");
-//
-//for(const i=0; i < numberOfAttendees; i++) {
-//
-//container.innerHTML += "<div class = 'attendeeAvailabilityGraphRow'> + attendeeList[i] </div>";}
-
-
-
