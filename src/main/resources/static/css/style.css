@@ -91,11 +91,11 @@ border-width: 0px 0px 0px 5px;
 
 /*--------------------------------------------ViewEvent Form -----------------------------------------------------*/
 
-.vertical-scrollable> .row {
-          position: absolute;
-          top: 120px;
-          bottom: 100px;
-          left: 180px;
-          width: 50%;
-          overflow-y: scroll;
-        }
+#checkedID {
+    opacity: 0;
+    position: absolute;
+}
+
+.active {
+   background-color: #ECDDB3 !important;
+}
