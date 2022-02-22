@@ -58,6 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+
+
+
+
+
     const serverTimeTextSpans = document.querySelectorAll(".server-time-text");
     serverTimeTextSpans.forEach((serverTimeTextSpan)=>{
         const formatOption = serverTimeTextSpan.dataset.format;

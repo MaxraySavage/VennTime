@@ -1,39 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap');
+
+
 :root {
     --light-gray: #DADCE0;
     --light-blue: #1B9CE2;
 }
 
+
+body {
+    margin: 0;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+
+}
+
+/*************** top css *************************/
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    text-align: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0,0,0,0.8);
+}
+
+.month i {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.month h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.2rem;
+}
+
+.month p {
+    font-size: 1.1rem;
+}
+
+/*************** bottom css *************************/
+
+
 #app-calendar {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    height: 500px;
-    width: 500px;
+    grid-template-rows: repeat(6, 1fr);
+    height: 100vh;
+    width: 100vw;  */
     background-color: white;
 }
 
 
-.day {
-    border-bottom: 1px solid var(--light-gray);
+.nameOfWeek {
+    padding-bottom: 5px;
+    color: red;
+}
+
+
+.dayOfMonth {
+    /* width is determined by bootstrap */
+    min-height: 100px;
     border-right: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
     text-align: center;
     padding-top: 5px;
     font-size: 12px;
     cursor: pointer;
     transition: background-color 200ms, color 200ms;
-
+    color: black;
 }
 
 
-.name {
-    padding-bottom: 5px;
-}
-
-.weekend {
+.weekendDays {
     color: var(--light-blue);
 }
 
-.selected {
+
+.selectedDays {
     background-color: var(--light-blue);
-    color: white;
+    color: greenyellow;
 }
+
+
+
+.prevDays, .next-days {
+    border-right: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+    text-align: center;
+    /* padding-top: 0px;  */
+    padding-top: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 200ms, color 200ms;
+    color: var(--light-gray);
+    /* background-color: var(--light-gray); */
+    /* opacity: 0.5; */
+}
+
+.today {
+    margin-top: 0px;
+    background-color: deepskyblue;
+}
+
+
+

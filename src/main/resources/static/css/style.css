@@ -1,8 +1,11 @@
 
 /*---------------- Right Column: Event Details CSS ----------------*/
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap');
+
 
 html, body {
   height:100%;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 .container-fluid {
@@ -32,9 +35,11 @@ html, body {
 
 .grey, .red{ min-height: 50px; margin-bottom: 10px; }
 
+
 .green{
 background-color: #95D24F;
 }
+
 /*border-style: solid;
 border-style: solid;
 border-width: 0px 5px 0px 0px;
