@@ -2,7 +2,6 @@ package org.launchcode.VennTime.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +17,21 @@ public class Event extends AbstractEntity{
     @Size(min=7, max=500, message= "Add a description of event")
     private String description;
 
-    @ElementCollection
-    private List<AvailabilityRange> availabilityRanges;
+    @OneToMany
+    private List<TimeChunk> timeChunks;
 
     @OneToMany
     private List<Attendee> attendees;
 
     public Event() {
-        this.availabilityRanges = new ArrayList<AvailabilityRange>();
+        this.timeChunks = new ArrayList<TimeChunk>();
         this.attendees = new ArrayList<Attendee>();
     }
 
-    public Event(String name, String description, List<AvailabilityRange> availabilityRanges, List<Attendee> attendees) {
+    public Event(String name, String description, List<TimeChunk> timeChunks, List<Attendee> attendees) {
         this.name = name;
         this.description = description;
-        this.availabilityRanges = availabilityRanges;
+        this.timeChunks = timeChunks;
         this.attendees = attendees;
     }
 
@@ -53,12 +52,12 @@ public class Event extends AbstractEntity{
         this.description = description;
     }
 
-    public List<AvailabilityRange> getAvailabilityRanges() {
-        return availabilityRanges;
+    public List<TimeChunk> getTimeChunks() {
+        return timeChunks;
     }
 
-    public void setAvailabilityRanges(List<AvailabilityRange> availabilityRanges) {
-        this.availabilityRanges = availabilityRanges;
+    public void setTimeChunks(List<TimeChunk> timeChunks) {
+        this.timeChunks = timeChunks;
     }
 
     public List<Attendee> getAttendees() {

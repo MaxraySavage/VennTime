@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     serverTimeTextSpans.forEach((serverTimeTextSpan)=>{
         const formatOption = serverTimeTextSpan.dataset.format;
         let timeString = serverTimeTextSpan.dataset.serverTime;
-        timeString = timeString.split(' ').join('T');
+        timeString = timeString.split('[')[0];
 
         let dateObj = DateTime.fromISO(timeString);
 

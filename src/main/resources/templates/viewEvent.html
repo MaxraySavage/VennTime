@@ -53,11 +53,11 @@
                     <!--table container of iterating start time/dates for individual and group availability-->
                     <div class="container">
                         <div class="timeTable">
-                            <th:block th:each="availabilityRange : ${event.availabilityRanges}">
+
                                 <table class="table table-borderless">
                                     <thead>
                                     <h6 class="fs-4 lead text-start fst-italic p-3">
-                                        <span class="server-time-text" th:data-server-time="${availabilityRange.startTime}" data-format="full"></span>
+                                        <span class="server-time-text" th:data-server-time="${event.timeChunks[0].startTime.toOffsetDateTime()}" data-format="full"></span>
                                     </h6>
                                     <tr>
 
@@ -68,11 +68,11 @@
                                     </thead>
 
                                     <tbody>
-                                    <tr th:each="timeChunk : ${availabilityRange.getFifteenMinuteChunks()}">
+                                    <tr th:each="timeChunk : ${event.timeChunks}">
                                         <td class="text-start">
                                             <input type="checkbox"
                                                    class="viewAvailabilityBlock"
-                                                   th:value="${timeChunk}"
+                                                   th:value="${timeChunk.id}"
                                                    th:field="${viewEventDTO.attendeeAvailableChunksList}"
 
                                             />
@@ -81,7 +81,7 @@
                                                 <label class="labelTimeChunkInput">
 
                                                     <span class="server-time-text"
-                                                          th:data-server-time="${timeChunk}"
+                                                          th:data-server-time="${timeChunk.startTime.toOffsetDateTime()}"
                                                           data-format="time"></span>
                                                     <!--                                            </input>-->
                                                 </label>
@@ -89,13 +89,15 @@
                                         </td>
                                         <td>
                                             <div>
-                                                *other available attendees*
+                                                <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
+                                                    <span th:text="${attendee.name}"></span>
+
+                                                </th:block>
                                             </div>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
-                            </th:block>
                         </div>
                     </div>
                 </div>

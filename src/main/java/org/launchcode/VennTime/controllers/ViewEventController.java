@@ -1,7 +1,10 @@
 package org.launchcode.VennTime.controllers;
+import org.launchcode.VennTime.data.AttendeeRepository;
 import org.launchcode.VennTime.data.EventRepository;
+import org.launchcode.VennTime.data.TimeChunkRepository;
 import org.launchcode.VennTime.models.Attendee;
 import org.launchcode.VennTime.models.Event;
+import org.launchcode.VennTime.models.TimeChunk;
 import org.launchcode.VennTime.models.dto.ViewEventDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -19,6 +24,12 @@ public class ViewEventController {
 
     @Autowired
     EventRepository eventRepository;
+
+    @Autowired
+    TimeChunkRepository timeChunkRepository;
+
+    @Autowired
+    AttendeeRepository attendeeRepository;
 
     @GetMapping("/{id}")
     public String displayViewEventForm (HttpServletRequest request, Model model, @PathVariable("id") String id) {
@@ -53,14 +64,30 @@ public class ViewEventController {
             return "redirect:";
         }
 
+        Event event = optionalEvent.get();
         String testString = "";
 
+        Attendee attendee = new Attendee();
+
+        attendee.setName(viewEventDTO.getName());
+
+        Attendee savedAttendee = attendeeRepository.save(attendee);
+
+        ArrayList<TimeChunk> timeChunks = new ArrayList<>();
+
         for(String item : viewEventDTO.getAttendeeAvailableChunksList()){
-            testString += item + "/n";
+            int chunkId = Integer.parseInt(item,10);
+            Optional timeChunkOptional = timeChunkRepository.findById(chunkId);
+            if(timeChunkOptional.isEmpty()) {
+                continue;
+            }
+            TimeChunk timeChunk = (TimeChunk) timeChunkOptional.get();
+            timeChunk.getAvailableAttendees().add(savedAttendee);
+            timeChunkRepository.save(timeChunk);
         }
 
 
-        return testString;
+        return "Oh hello :)";
     }
 
 }
