@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
+
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -20,6 +21,19 @@
         <div class="mt-5 row text-center">
             <div class="col-5 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
+
+
+                    <div class="month">
+                        <i class="fas fa-angle-left prev"></i>
+                        <div class="date">
+                            <h1></h1>
+                            <p></p>
+                        </div>
+                        <i class="fas fa-angle-right next"></i>
+                    </div>
+
+
+
                 <label>Calendar</label>
                 <div id="app-calendar" data-target="calendar-input"></div>
                     <textarea th:field="${createEventDTO.selectedDates}" id="calendar-input" ></textarea>
