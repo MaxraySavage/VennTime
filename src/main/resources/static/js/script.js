@@ -78,10 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //    button function for time slots in viewEvent
 
-    let timeSlotBtns = document.getElementById("timeChunkBtn");
-
-        $(timeSlotBtns).click(function(){
-        $(timeSlotBtns).addClass("active");
-    });
+//    let timeSlotBtns = document.getElementById("timeChunkBtn");
+//
+//        $(timeSlotBtns).click(function(){
+//        $(timeSlotBtns).addClass("active");
+//    });
 
 })

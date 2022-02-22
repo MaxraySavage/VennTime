@@ -70,10 +70,16 @@
                                     <tbody>
                                     <tr th:each="timeChunk : ${availabilityRange.getFifteenMinuteChunks()}">
                                         <td class="text-start">
+                                            <input type="checkbox"
+                                                   class="viewAvailabilityBlock"
+                                                   th:value="${timeChunk}"
+                                                   th:field="${viewEventDTO.attendeeAvailableChunksList}"
+
+                                            />
                                             <button type="button" value="text" class="btn btn-primary active text-black" id="timeChunkBtn"
                                                     data-bs-toggle="button" autocomplete="off" aria-pressed="true">
                                                 <label class="labelTimeChunkInput">
-                                                    <input type="checkbox" id="checkedID" class="viewAvailabilityBlock"/>
+
                                                     <span class="server-time-text"
                                                           th:data-server-time="${timeChunk}"
                                                           data-format="time"></span>

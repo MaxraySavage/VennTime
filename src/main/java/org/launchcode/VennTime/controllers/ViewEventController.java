@@ -1,10 +1,7 @@
 package org.launchcode.VennTime.controllers;
 import org.launchcode.VennTime.data.EventRepository;
-import org.launchcode.VennTime.models.AbstractEntity;
 import org.launchcode.VennTime.models.Attendee;
-import org.launchcode.VennTime.models.AvailabilityRange;
 import org.launchcode.VennTime.models.Event;
-import org.launchcode.VennTime.models.dto.CreateEventDTO;
 import org.launchcode.VennTime.models.dto.ViewEventDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -60,7 +55,7 @@ public class ViewEventController {
 
         String testString = "";
 
-        for(String item : viewEventDTO.getAvailableStartTimes()){
+        for(String item : viewEventDTO.getAttendeeAvailableChunksList()){
             testString += item + "/n";
         }
 

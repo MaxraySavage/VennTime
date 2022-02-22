@@ -2,6 +2,7 @@ package org.launchcode.VennTime.models.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewEventDTO {
@@ -11,7 +12,7 @@ public class ViewEventDTO {
     private String name;
 
 
-    private List<String> availableStartTimes;
+    private List<String> attendeeAvailableChunksList = new ArrayList<>();
 
 
     public String getName() {
@@ -22,11 +23,11 @@ public class ViewEventDTO {
         this.name = name;
     }
 
-    public List<String> getAvailableStartTimes() {
-        return availableStartTimes;
+    public List<String> getAttendeeAvailableChunksList() {
+        return attendeeAvailableChunksList;
     }
 
-    public void setAvailableStartTimes(List<String> availableStartTimes) {
-        this.availableStartTimes = availableStartTimes;
+    public void setAttendeeAvailableChunksList(List<String> attendeeAvailableChunksList) {
+        this.attendeeAvailableChunksList = attendeeAvailableChunksList;
     }
 }
