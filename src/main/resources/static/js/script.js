@@ -80,8 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let timeSlotBtns = document.getElementById("timeChunkBtn");
 
-        $(timeSlotBtns).click(function(){
-        $(timeSlotBtns).addClass("active");
-    });
+        (timeSlotBtns).click(function(){
+        (timeSlotBtns).addClass("active");
+    })
+
+
+    const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
+    attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
+            const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
+            attendeeAvailabilityGraphRow.innerText = attendeeList.length;
+
+
+             for(let i=0; i < attendeeList.length; i++) {
+                attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphRow col-md">'
+                 + attendeeList[i] + '</div>';
+                    }
 
 })
+
+});
