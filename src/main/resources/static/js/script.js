@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     serverTimeTextSpans.forEach((serverTimeTextSpan)=>{
         const formatOption = serverTimeTextSpan.dataset.format;
         let timeString = serverTimeTextSpan.dataset.serverTime;
-        timeString = timeString.split(' ').join('T');
+        timeString = timeString.split('[')[0];
 
         let dateObj = DateTime.fromISO(timeString);
 
@@ -78,10 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //    button function for time slots in viewEvent
 
-    let timeSlotBtns = document.getElementById("timeChunkBtn");
-
-        $(timeSlotBtns).click(function(){
-        $(timeSlotBtns).addClass("active");
-    });
+//    let timeSlotBtns = document.getElementById("timeChunkBtn");
+//
+//        $(timeSlotBtns).click(function(){
+//        $(timeSlotBtns).addClass("active");
+//    });
 
 })
