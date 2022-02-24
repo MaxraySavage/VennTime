@@ -5,45 +5,57 @@
 
 <body>
 
+test
     <div class="container">
         <h1 class="display-1 page-header text-center">VennTime</h1>
     </div>
 
     <form method="post">
     <div class="container-fluid">
-
         <div class="row rowoverlay">
             <div class="col-6 green tall"></div>
             <div class="col-6 cream tall"></div>
         </div>
-
         <div class="mt-5 row text-center">
             <div class="col-5 red coloverlay d-flex flex-column justify-content-center">
-                <div class="form-group my-3">
-                <label>Calendar</label>
+                <div class="form-group my-8">
+
+                <label class="mt-4">Calendar</label>
                 <div id="app-calendar" data-target="calendar-input"></div>
                     <textarea th:field="${createEventDTO.selectedDates}" id="calendar-input" ></textarea>
-            </div>
                 </div>
+            </div>
             <div class="col-2 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
-                    <label>Name</label>
+
+                    <label class="mt-2">Name</label>
                     <input th:field="${createEventDTO.name}" class="form-control" placeholder="Name Event"/>
                 </div>
                 <input type="submit"/>
             </div>
-
             <div class="col-5 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
+
+
                     <label>Availability Range</label>
-                    <input type="time" name="startTime"class="form-control my-2" />
-                    <input type="time" name="endTime" class="form-control my-2" />
+                    <div class="input-group">
+                        <span class="input-group-text my-2">Start Time</span>
+                        <input type="time" name="startTime" class="form-control my-2">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-text my-2">End Time</span>
+                        <input type="time" name="startTime" class="form-control my-2">
+                    </div>
+
+
                     <select th:field="${createEventDTO.timezone}" class="form-control my-2" >
                         <th:block th:each="possibleTimezone : ${createEventDTO.getPossibleTimezones}">
                             <option th:value="${possibleTimezone}" th:text="${possibleTimezone}"></option>
                         </th:block>
                     </select>
                 </div>
+
                 <div class="form-group my-3">
                         <textarea th:field="${createEventDTO.description}" class="form-control" placeholder="Description">
                             Event Description
@@ -51,7 +63,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     </form>
 
