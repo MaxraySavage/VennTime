@@ -1,18 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
-<form method="post">
-<label>Event ID</label>
-    <input type="text" value="Event ID"/>
-    <input type = "submit"/>
 
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="container">
+    <h1 class="display-1 page-header text-center">VennTime</h1>
+</div>
+
+<form method="post">
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="d-inline">
+                    <label>Name</label>
+                    <input th:field="${attendee.name}" class="form-control">
+                </div>
+                <div class="d-inline">
+                    <label>Email (optional):</label>
+                    <input type="text" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-6 text-center p-5">
+                <input value="Submit Times" type="submit" class="btn btn-dark btn-lg"/>
+            </div>
+        </div>
+    </div>
+
+<!--    formatting for background colors-->
+    <div class="container-fluid">
+        <div class="row rowoverlay">
+            <div class="col-4 coloverlay green tall"></div>
+            <div class="col-8 coloverlay cream tall"></div>
+        </div>
+
+        <!--        headers-->
+        <div class="container">
+            <div class="mt-5 row text-center">
+                <div class="col-12 p-3 my-3 text-center">
+                    <h4 class="display-6 fs-3">Event name:</h4>
+                    <h3 th:text="${event.name}"></h3>
+                </div>
+            </div>
+        </div>
+
+        <!--        table row in bootstrap-->
+        <div class="container">
+            <div class="mt-5 row text-center">
+                <div class="col-12 red d-flex flex-column justify-content-center">
+
+                    <!--table container of iterating start time/dates for individual and group availability-->
+                    <div class="container">
+                        <div class="timeTable">
+
+                                <table class="table table-borderless">
+                                    <thead>
+                                    <h6 class="fs-4 lead text-start fst-italic p-3">
+                                        <span class="server-time-text" th:data-server-time="${event.timeChunks[0].startTime.toOffsetDateTime()}" data-format="full"></span>
+                                    </h6>
+                                    <tr>
+
+                                        <th class="text-start fs-5">Your Availability</th>
+
+                                        <th class="fs-5">Group Availability</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr th:each="timeChunk : ${event.timeChunks}">
+                                        <td class="text-start">
+                                            <input type="checkbox"
+                                                   class="viewAvailabilityBlock"
+                                                   th:value="${timeChunk.id}"
+                                                   th:field="${viewEventDTO.attendeeAvailableChunksList}"
+
+                                            />
+                                            <button type="button" value="text" class="btn btn-primary active text-black" id="timeChunkBtn"
+                                                    data-bs-toggle="button" autocomplete="off" aria-pressed="true">
+                                                <label class="labelTimeChunkInput">
+
+                                                    <span class="server-time-text"
+                                                          th:data-server-time="${timeChunk.startTime.toOffsetDateTime()}"
+                                                          data-format="time"></span>
+                                                    <!--                                            </input>-->
+                                                </label>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
+                                                    <span th:text="${attendee.name}"></span>
+
+                                                </th:block>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </form>
-
 
 </body>
 </html>

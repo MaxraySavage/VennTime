@@ -5,15 +5,17 @@ import org.launchcode.VennTime.models.Event;
 import org.launchcode.VennTime.models.dto.CreateEventDTO;
 import org.launchcode.VennTime.models.mapper.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Controller
 public class HomeController {
@@ -30,21 +32,28 @@ public class HomeController {
         return "home";
     }
 
-    @ResponseBody
+
     @PostMapping("/")
-    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) {
+    public String processCreateEvent(Model model, @ModelAttribute @Valid CreateEventDTO createEventDTO, Errors errors) throws ParseException {
 
         if (errors.hasErrors()) {
+            model.addAttribute("title", "Create Event");
+            model.addAttribute("createEventDTO", createEventDTO);
+            return "home";
+        }
+
+        LocalTime startTime = createEventDTO.getStartTime();
+        LocalTime endTime = createEventDTO.getEndTime();
+
+        if (startTime.isAfter(endTime)) {
+            errors.rejectValue("startTime", "startTime.isAfterEndTime", "Please enter a start time that occurs before the end time.");
             model.addAttribute("title", "Create Event");
             return "home";
         }
 
-            Event newEvent = dtoMapper.toEvent(createEventDTO);
-            eventRepository.save(newEvent);
-            return newEvent.getName();
-
+        Event savedEvent = dtoMapper.toEvent(createEventDTO);
+        return "redirect:viewEvent/" + savedEvent.getId();
     }
-
 
 }
 

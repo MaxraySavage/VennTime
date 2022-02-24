@@ -3,6 +3,7 @@ package org.launchcode.VennTime.models.dto;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,9 +20,8 @@ public class CreateEventDTO {
     @Size(min=7, max=500, message= "Add a description of event")
     private String description;
 
-    @NotBlank(message= "Select a Date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    @NotBlank(message= "Must select at least one date")
+    private String selectedDates;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime startTime;
@@ -53,12 +53,12 @@ public class CreateEventDTO {
         this.description = description;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getSelectedDates() {
+        return selectedDates;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setSelectedDates(String selectedDates) {
+        this.selectedDates = selectedDates;
     }
 
     public LocalTime getStartTime() {
