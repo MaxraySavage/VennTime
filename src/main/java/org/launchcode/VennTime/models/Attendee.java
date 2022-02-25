@@ -2,9 +2,8 @@ package org.launchcode.VennTime.models;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,14 +14,14 @@ public class Attendee extends AbstractEntity{
     @ManyToOne
     private Event event;
 
-    @ElementCollection
-    private List<AvailabilityRange> availabilityRanges;
+    @ManyToMany(mappedBy = "availableAttendees")
+    private List<TimeChunk> timeChunks;
 
     public Attendee() {}
 
-    public Attendee(String name, List<AvailabilityRange> availabilityRanges) {
+    public Attendee(String name, List<TimeChunk> timeChunks) {
         this.name = name;
-        this.availabilityRanges = availabilityRanges;
+        this.timeChunks = timeChunks;
     }
 
     public String getName() {
@@ -33,11 +32,19 @@ public class Attendee extends AbstractEntity{
         this.name = name;
     }
 
-    public List<AvailabilityRange> getAvailabilityRanges() {
-        return availabilityRanges;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setAvailabilityRanges(List<AvailabilityRange> availabilityRanges) {
-        this.availabilityRanges = availabilityRanges;
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public List<TimeChunk> getTimeChunks() {
+        return timeChunks;
+    }
+
+    public void setTimeChunks(List<TimeChunk> timeChunks) {
+        this.timeChunks = timeChunks;
     }
 }

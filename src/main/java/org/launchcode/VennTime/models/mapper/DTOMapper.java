@@ -1,28 +1,35 @@
 package org.launchcode.VennTime.models.mapper;
 
-import org.launchcode.VennTime.models.AvailabilityRange;
+import org.launchcode.VennTime.data.EventRepository;
+import org.launchcode.VennTime.data.TimeChunkRepository;
+import org.launchcode.VennTime.models.TimeChunk;
 import org.launchcode.VennTime.models.Event;
 import org.launchcode.VennTime.models.dto.CreateEventDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @Component
 public class DTOMapper {
 
+    @Autowired
+    TimeChunkRepository timeChunkRepository;
+
+    @Autowired
+    EventRepository eventRepository;
+
     public Event toEvent(CreateEventDTO createEventDTO) throws ParseException {
         Event newEvent = new Event();
         newEvent.setName(createEventDTO.getName());
         newEvent.setDescription(createEventDTO.getDescription());
+
+        Event savedEvent = eventRepository.save(newEvent);
 
         String formSelectedDates = createEventDTO.getSelectedDates();
         List<String> dateStringArray = Arrays.asList(formSelectedDates.split(",", -1));
@@ -30,22 +37,27 @@ public class DTOMapper {
         for(String dateString : dateStringArray) {
             LocalDate currentDate = LocalDate.parse(dateString);
 
-            Instant startInstant = currentDate
+            ZonedDateTime startTime = currentDate
                     .atTime(createEventDTO.getStartTime())
-                    .atZone(ZoneId.of(createEventDTO.getTimezone()))
-                    .toInstant();
-            Instant endInstant = currentDate
+                    .atZone(ZoneId.of(createEventDTO.getTimezone()));
+            ZonedDateTime endTime = currentDate
                     .atTime(createEventDTO.getEndTime())
-                    .atZone(ZoneId.of(createEventDTO.getTimezone()))
-                    .toInstant();
+                    .atZone(ZoneId.of(createEventDTO.getTimezone()));
 
-            Timestamp startTime = new Timestamp(startInstant.toEpochMilli());
-            Timestamp endTime = new Timestamp(endInstant.toEpochMilli());
+            while(startTime.plusMinutes(15).isBefore(endTime)) {
+                TimeChunk timeChunk = new TimeChunk(startTime, startTime.plusMinutes(15));
+                TimeChunk savedTimeChunk = timeChunkRepository.save(timeChunk);
+                savedEvent.getTimeChunks().add(savedTimeChunk);
+                startTime = startTime.plusMinutes(15);
+            }
 
-            AvailabilityRange availabilityRange = new AvailabilityRange(startTime, endTime);
-            newEvent.getAvailabilityRanges().add(availabilityRange);
+            TimeChunk timeChunk = new TimeChunk(startTime, endTime);
+            TimeChunk savedTimeChunk = timeChunkRepository.save(timeChunk);
+            savedEvent.getTimeChunks().add(savedTimeChunk);
+            savedEvent = eventRepository.save(savedEvent);
+
         }
 
-        return newEvent;
+        return savedEvent;
     }
 }
