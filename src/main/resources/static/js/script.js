@@ -74,14 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
              serverTimeTextSpan.innerText = dateObj.toLocaleString(DateTime.TIME_SIMPLE);
         }
 
-    })
-
-//    button function for time slots in viewEvent
-
-    let timeSlotBtns = document.getElementById("timeChunkBtn");
-
-        $(timeSlotBtns).click(function(){
-        $(timeSlotBtns).addClass("active");
-    });
-
 })
+//    button function for attendee time slot availability in viewEvent
+
+    const availableTimeBtns = document.querySelectorAll(".inputTimes");
+    availableTimeBtns.forEach((availableTimeBtn) => {
+        let checkBox = availableTimeBtn.querySelector(".inputAvailabilityBlock");
+        availableTimeBtn.addEventListener("click", function () {
+            if (checkBox.checked === true) {
+                availableTimeBtn.classList.add("active");
+            } else {
+                availableTimeBtn.classList.remove("active");
+            }
+        })
+    })
+})
+

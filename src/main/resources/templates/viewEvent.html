@@ -28,7 +28,7 @@
         </div>
     </div>
 
-<!--    formatting for background colors-->
+    <!--    formatting for background colors-->
     <div class="container-fluid">
         <div class="row rowoverlay">
             <div class="col-4 coloverlay green tall"></div>
@@ -66,20 +66,15 @@
                                         <th class="fs-5">Group Availability</th>
                                     </tr>
                                     </thead>
-
                                     <tbody>
                                     <tr th:each="timeChunk : ${availabilityRange.getFifteenMinuteChunks()}">
                                         <td class="text-start">
-                                            <button type="button" value="text" class="btn btn-primary active text-black" id="timeChunkBtn"
-                                                    data-bs-toggle="button" autocomplete="off" aria-pressed="true">
-                                                <label class="labelTimeChunkInput">
-                                                    <input type="checkbox" id="checkedID" class="viewAvailabilityBlock"/>
-                                                    <span class="server-time-text"
-                                                          th:data-server-time="${timeChunk}"
-                                                          data-format="time"></span>
-                                                    <!--                                            </input>-->
-                                                </label>
-                                            </button>
+                                            <label class="inputTimes">
+                                                <input type="checkbox" class="inputAvailabilityBlock">
+                                                <span class="server-time-text"
+                                                      th:data-server-time="${timeChunk}"
+                                                      data-format="time"></span>
+                                            </label>
                                         </td>
                                         <td>
                                             <div>
