@@ -6,63 +6,108 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const calendar = document.getElementById("app-calendar");
     if(calendar){
+        const calendarMonthDisplay = document.getElementById("calendar-month-display");
 
         const selectedDates = new Set();
 
-        const isWeekend = day => {
-            // 6 when its saturday, 0 when its sunday
-            return day % 7 === 6 || day % 7 === 0;
-        }
-
-        // return day names of the week on calendar
-        const getDayName = day => {
-            const date = new Date(Date.UTC(2022, 1, day));
-            // internationalization of datetime format
-            return new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-        }
-
-        // add day names of the week just on the top first week on calendar
-
         const targetInput = document.getElementById(calendar.dataset.target);
 
-        for (let day = 1; day <= 31; day++){
-            const weekend = isWeekend(day);
-            let name = "";
-            if (day <= 7){
-                const dayName = getDayName(day);
-                name = `<div class="name">${dayName}</div>`;
+        const renderCalenderMonth = (firstDayOfMonth) => {
+            calendarMonthDisplay.innerText = `${firstDayOfMonth.monthLong} ${firstDayOfMonth.year}`
+            calendar.innerHTML = '';
+
+            // Get starting day of the week
+            // 1 is Monday and 7 is Sunday
+            const startingWeekday = calendarStartDay.weekday
+
+            // number of days we have to go to get to a monday
+            // for example if startingWeekday is 3 for wednesday
+            // 1 - 3 is negative 2, so we have to go back two days to be at monday
+            let dayOffset = 1 - startingWeekday
+
+            // add ending days from preceding month to calendar
+            while(dayOffset < 0) {
+                const nextDayToAddToCalendar = firstDayOfMonth.plus({ days: dayOffset })
+
+                const nameOfWeekdayHTML = `<div class="nameOfWeek">${nextDayToAddToCalendar.weekdayShort}</div>`;
+
+                calendar.insertAdjacentHTML("beforeend",
+                        `<div class="prevDays cola">${nameOfWeekdayHTML}${nextDayToAddToCalendar.day}</div>`);
+
+                dayOffset += 1;
             }
 
-            calendar.insertAdjacentHTML("beforeend",
-            `<div class="day ${weekend ? "weekend" : ""}" data-date="2022-02-${day.toString().padStart(2,'0')}">
-              ${name}${day}</div>`);
+            for(let i = 1; i <= firstDayOfMonth.daysInMonth; i += 1){
+                const nextDayToAddToCalendar = firstDayOfMonth.set({ day: i });
+                const isWeekend = nextDayToAddToCalendar.weekday > 5;
+                const inFirstCalendarRow = nextDayToAddToCalendar.startOf('week') <= firstDayOfMonth;
+
+                const dataDateProperty = `data-date="${nextDayToAddToCalendar.toISODate()}"`
+
+                let htmlStringToAddToCalendar = `<div class="dayOfMonth cola ${isWeekend ? 'weekendDays' : ''}" ${dataDateProperty}>`;
+
+                if(inFirstCalendarRow) {
+                    htmlStringToAddToCalendar += `<div class="nameOfWeek">${nextDayToAddToCalendar.weekdayShort}</div>`;
+                }
+
+                htmlStringToAddToCalendar += `${nextDayToAddToCalendar.day}</div>`;
+
+                if(nextDayToAddToCalendar.weekday == 7) {
+                    //htmlStringToAddToCalendar += '<div class="w-100"></div>'
+                }
+
+                calendar.insertAdjacentHTML("beforeend",htmlStringToAddToCalendar);
+            }
+
+            // fill out the rest of last week
+            const lastDayOfMonth = firstDayOfMonth.endOf('month')
+
+            for(let i = 1; i <= 7 - lastDayOfMonth.weekday; i++){
+                const nextDayToAddToCalendar = lastDayOfMonth.plus({ days: i })
+
+                calendar.insertAdjacentHTML("beforeend",
+                        `<div class="nextDays cola">${nextDayToAddToCalendar.day}</div>`);
+
+            }
+
+            document.querySelectorAll("#app-calendar .dayOfMonth").forEach(day => {
+                day.addEventListener("click", event => {
+                    // classList property returns css class names of an element
+                    // toggle() method toggle between hide() and show() for the selected elements
+                    event.currentTarget.classList.toggle("selected");
+                    const dateString = day.dataset.date;
+                    if(selectedDates.has(dateString)) {
+                        selectedDates.delete(dateString)
+                    } else {
+                        selectedDates.add(dateString);
+                    }
+                    targetInput.value = Array.from(selectedDates).join(',');
+                })
+            })
         }
 
-        // toggle select or unselect day(s) on calendar
-        document.querySelectorAll("#app-calendar .day").forEach
-        (day => {
-            day.addEventListener("click", event => {
-                // classList property returns css class names of an element
-                // toggle() method toggle between hide() and show() for the selected elements
-                event.currentTarget.classList.toggle("selected");
-                const dateString = day.dataset.date;
-                if(selectedDates.has(dateString)) {
-                    console.log(`${dateString} has already been selected`);
-                    selectedDates.delete(dateString)
-                } else {
-                    selectedDates.add(dateString);
-                    console.log(`${dateString} added to selected dates`);
-                }
-                targetInput.value = Array.from(selectedDates).join(',');
-            })
+        let calendarStartDay = DateTime.now().set({ day: 1});
+
+        renderCalenderMonth(calendarStartDay);
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            calendarStartDay = calendarStartDay.minus({ months: 1 })
+            renderCalenderMonth(calendarStartDay);
         })
+
+
+        document.querySelector('.next').addEventListener('click', () => {
+            calendarStartDay = calendarStartDay.plus({ months: 1 })
+            renderCalenderMonth(calendarStartDay);
+        })
+
     }
 
     const serverTimeTextSpans = document.querySelectorAll(".server-time-text");
     serverTimeTextSpans.forEach((serverTimeTextSpan)=>{
         const formatOption = serverTimeTextSpan.dataset.format;
         let timeString = serverTimeTextSpan.dataset.serverTime;
-        timeString = timeString.split(' ').join('T');
+        timeString = timeString.split('[')[0];
 
         let dateObj = DateTime.fromISO(timeString);
 
@@ -78,10 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //    button function for time slots in viewEvent
 
-    let timeSlotBtns = document.getElementById("timeChunkBtn");
-
-        $(timeSlotBtns).click(function(){
-        $(timeSlotBtns).addClass("active");
-    });
+//    let timeSlotBtns = document.getElementById("timeChunkBtn");
+//
+//        $(timeSlotBtns).click(function(){
+//        $(timeSlotBtns).addClass("active");
+//    });
 
 })
