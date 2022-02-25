@@ -51,8 +51,7 @@ public class HomeController {
             return "home";
         }
 
-        Event newEvent = dtoMapper.toEvent(createEventDTO);
-        Event savedEvent = eventRepository.save(newEvent);
+        Event savedEvent = dtoMapper.toEvent(createEventDTO);
         return "redirect:viewEvent/" + savedEvent.getId();
     }
 
