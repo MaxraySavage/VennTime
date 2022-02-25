@@ -112,22 +112,12 @@
                                     <tbody>
                                     <tr th:each="timeChunk : ${event.timeChunks}">
                                         <td class="text-start">
-                                            <input type="checkbox"
-                                                   class="viewAvailabilityBlock"
-                                                   th:value="${timeChunk.id}"
-                                                   th:field="${viewEventDTO.attendeeAvailableChunksList}"
-
-                                            />
-                                            <button type="button" value="text" class="btn btn-primary active text-black" id="timeChunkBtn"
-                                                    data-bs-toggle="button" autocomplete="off" aria-pressed="true">
-                                                <label class="labelTimeChunkInput">
-
-                                                    <span class="server-time-text"
-                                                          th:data-server-time="${timeChunk.startTime.toOffsetDateTime()}"
-                                                          data-format="time"></span>
-                                                    <!--                                            </input>-->
-                                                </label>
-                                            </button>
+                                            <label class="inputTimes">
+                                                <input type="checkbox" class="inputAvailabilityBlock">
+                                                <span class="server-time-text"
+                                                      th:data-server-time="${timeChunk}"
+                                                      data-format="time"></span>
+                                            </label>
                                         </td>
                                         <td>
                                             <div>
