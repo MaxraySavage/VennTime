@@ -88,14 +88,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
     attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
             const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
-            attendeeAvailabilityGraphRow.innerText = attendeeList.length;
+          // attendeeAvailabilityGraphRow.innerText = attendeeList.length;
+
+//
+//for(let i=0; i < attendeeList.length; i++) {
+//
+//           return attendeeList[i] }
 
 
-             for(let i=0; i < attendeeList.length; i++) {
-                attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphRow col-md">'
-                 + attendeeList[i] + '</div>';
-                    }
 
-})
+
+//   const name = attendeeList[i].toUpperCase.split('');
+//   const firstInitial = name.substring(0,1);
+
+
+ attendeeList.forEach(function(attendee) {
+    let firstInitial = attendee.trim().charAt(0) ;
+
+
+attendeeAvailabilityGraphRow.innerHTML += `<div class="progress-bar" style="width: 15%;" role="progressbar"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+                  ${firstInitial} </div>`;
+                        })
+});
+
+
+//const at
+//    for(let i=0; i < attendeeList.length; i++) {
+//
+//attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphRow col-md">'
+//                 + attendeeList[i] + '</div>';
+//                    }
+
+
+//for(let i=0; i < attendeeList.length; i++) {
+//
+//attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphRow col-md">'
+//                 + attendeeList[i] + '</div>';
+//                    }
+
+
+//    attendeeAvailabilityGraphRow.innerHTML += '<div class="attendeeAvailabilityGraphRow col-md">'
+//                 + attendeeList[i].substring(0,1) + '</div>';
+//                    }
 
 });
+
+
+

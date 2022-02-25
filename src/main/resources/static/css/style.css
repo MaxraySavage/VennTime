@@ -52,28 +52,7 @@ border-width: 0px 0px 0px 5px;
 
  /*---------------- Right Column: Attendee Availability CSS ----------------*/
 
-  .attendeeAvailabilityGraphRow {
-  align-items: center;
-     box-sizing: border-box;
-      display: flex;
-      max-height: 26px;
-      margin: 1px;
-      flex-direction:row;
-      justify-content:center;
-      height: 10px;
-      padding-left: 1px;
-      padding-right: 1px;
-      position: relative;
-      font-size: 12px;
-      font-weight: 100;
-      color: black;
-     padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-      background-color: #95D24F;
-      border: 1px solid rgba(86, 61, 124, 0.2);
-      border: rounded;
-      width: 40px
- }
+
 
 /*.attendeeAvailabilityGraphBlock{
 display:flex;
