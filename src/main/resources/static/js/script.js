@@ -121,12 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
 
-//    button function for time slots in viewEvent
-
-//    let timeSlotBtns = document.getElementById("timeChunkBtn");
-//
-//        $(timeSlotBtns).click(function(){
-//        $(timeSlotBtns).addClass("active");
-//    });
+    const availableTimeBtns = document.querySelectorAll(".inputTimes");
+    availableTimeBtns.forEach((availableTimeBtn) => {
+        let checkBox = availableTimeBtn.querySelector(".inputAvailabilityBlock");
+        availableTimeBtn.addEventListener("click", function () {
+            if (checkBox.checked === true) {
+                availableTimeBtn.classList.add("active");
+            } else {
+                availableTimeBtn.classList.remove("active");
+            }
+        })
+    })
 
 })
