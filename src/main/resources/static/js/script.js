@@ -134,4 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
 //        $(timeSlotBtns).addClass("active");
 //    });
 
+const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
+    attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
+            const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
+             // attendeeAvailabilityGraphRow.innerText = attendeeList.length;
+
+             attendeeList.forEach(function(attendee) {
+                 let firstInitial = attendee.trim().charAt(0) ;
+
+
+             attendeeAvailabilityGraphRow.innerHTML += `<div class="progress-bar" style="width: 15%;" role="progressbar"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+                               ${firstInitial} </div>`;
+                                     })
+             });
+
+
 })
