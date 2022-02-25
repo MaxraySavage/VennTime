@@ -38,13 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             for(let i = 1; i <= firstDayOfMonth.daysInMonth; i += 1){
+
                 const nextDayToAddToCalendar = firstDayOfMonth.set({ day: i });
                 const isWeekend = nextDayToAddToCalendar.weekday > 5;
                 const inFirstCalendarRow = nextDayToAddToCalendar.startOf('week') <= firstDayOfMonth;
 
                 const dataDateProperty = `data-date="${nextDayToAddToCalendar.toISODate()}"`
+                let classes = '';
 
-                let htmlStringToAddToCalendar = `<div class="dayOfMonth cola ${isWeekend ? 'weekendDays' : ''}" ${dataDateProperty}>`;
+                classes += isWeekend ? 'weekendDays' : ''
+                classes += selectedDates.has(nextDayToAddToCalendar.toISODate()) ? ' selected' : ''
+
+                let htmlStringToAddToCalendar = `<div class="dayOfMonth ${classes}" ${dataDateProperty}>`;
 
                 if(inFirstCalendarRow) {
                     htmlStringToAddToCalendar += `<div class="nameOfWeek">${nextDayToAddToCalendar.weekdayShort}</div>`;
