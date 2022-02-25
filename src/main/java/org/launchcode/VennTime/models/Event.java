@@ -35,6 +35,31 @@ public class Event extends AbstractEntity{
         this.attendees = attendees;
     }
 
+    public TimeChunk getBestTimeChunk() {
+        TimeChunk bestChunk = timeChunks.get(0);
+        for(TimeChunk chunk : timeChunks) {
+            if(chunk.getAvailableAttendees().size() > bestChunk.getAvailableAttendees().size()){
+                bestChunk = chunk;
+            }
+        }
+        return bestChunk;
+    }
+
+
+    public TimeChunk getBestTimeChunkOfSize(int windowSize) {
+        int mostAttendeesInWindow = 0;
+        int bestStartingChunkIndex = 0;
+        for(int i = 0; i < timeChunks.size() - windowSize; i++) {
+            int attendeesInCurrentWindow = 0;
+            for(int j = 0; j < windowSize; j++){
+                attendeesInCurrentWindow += timeChunks.get(i + j).getAvailableAttendees().size();
+            }
+            if(attendeesInCurrentWindow > mostAttendeesInWindow) {
+                bestStartingChunkIndex = i;
+            }
+        }
+        return timeChunks.get(bestStartingChunkIndex);
+    }
 
     public String getName() {
         return name;

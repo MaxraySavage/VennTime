@@ -33,10 +33,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 name = `<div class="name">${dayName}</div>`;
             }
 
-            calendar.insertAdjacentHTML("beforeend",
-            `<div class="day ${weekend ? "weekend" : ""}" data-date="2022-02-${day.toString().padStart(2,'0')}">
-              ${name}${day}</div>`);
-        }
+
+            for(let i = 1; i <= firstDayOfMonth.daysInMonth; i += 1){
+
+                const nextDayToAddToCalendar = firstDayOfMonth.set({ day: i });
+                const isWeekend = nextDayToAddToCalendar.weekday > 5;
+                const inFirstCalendarRow = nextDayToAddToCalendar.startOf('week') <= firstDayOfMonth;
+
+                const dataDateProperty = `data-date="${nextDayToAddToCalendar.toISODate()}"`
+                let classes = '';
+
+                classes += isWeekend ? 'weekendDays' : ''
+                classes += selectedDates.has(nextDayToAddToCalendar.toISODate()) ? ' selected' : ''
+
+                let htmlStringToAddToCalendar = `<div class="dayOfMonth ${classes}" ${dataDateProperty}>`;
+
+                if(inFirstCalendarRow) {
+                    htmlStringToAddToCalendar += `<div class="nameOfWeek">${nextDayToAddToCalendar.weekdayShort}</div>`;
+                }
+
+                htmlStringToAddToCalendar += `${nextDayToAddToCalendar.day}</div>`;
+
 
         // toggle select or unselect day(s) on calendar
         document.querySelectorAll("#app-calendar .day").forEach
