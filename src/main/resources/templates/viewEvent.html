@@ -5,31 +5,11 @@
 
 <body>
 
-<div class="container">
-    <h1 class="display-1 page-header text-center">VennTime</h1>
-</div>
-
 <form method="post">
-    <div class="container">
-        <div class="row my-3">
-            <div class="col-6">
-                <div class="d-inline">
-                    <label>Name</label>
-                    <input th:field="${attendee.name}" class="form-control">
-                </div>
-                <div class="d-inline">
-                    <label>Email (optional):</label>
-                    <input type="text" class="form-control"/>
-                </div>
-            </div>
-            <div class="col-6 text-center p-5">
-                <input value="Submit Times" type="submit" class="btn btn-dark btn-lg"/>
-            </div>
-        </div>
-    </div>
 
-<!--    formatting for background colors-->
     <div class="container-fluid">
+
+        <!--formatting for background colors-->
         <div class="row rowoverlay">
             <div class="col-4 coloverlay green tall"></div>
             <div class="col-8 coloverlay cream tall"></div>
@@ -37,10 +17,34 @@
 
         <!--        headers-->
         <div class="container">
+
+            <!--        Logo header-->
+            <h1 class="display-1 text-center my-0">VennTime</h1>
+
+<!--            event name row-->
             <div class="mt-5 row text-center">
-                <div class="col-12 p-3 my-3 text-center">
+                <div class="col-12 p-3 text-center">
                     <h4 class="display-6 fs-3">Event name:</h4>
                     <h3 th:text="${event.name}"></h3>
+                </div>
+            </div>
+
+<!--            name input row-->
+            <div class="row p-2">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="attendeeName"></label>
+                        <input th:field="${attendee.name}" id="attendeeName" class="form-control" placeholder="Name">
+                    </div>
+                </div>
+                <div class="col-4"></div>
+            </div>
+
+<!--            submit button-->
+            <div class="row p-2">
+                <div class="text-center">
+                    <input value="Submit Times" type="submit" class="btn btn-dark"/>
                 </div>
             </div>
         </div>
@@ -54,40 +58,40 @@
                     <div class="container">
                         <div class="timeTable">
 
-                                <table class="table table-borderless">
-                                    <thead>
-                                    <h6 class="fs-4 lead text-start fst-italic p-3">
-                                        <span class="server-time-text" th:data-server-time="${event.timeChunks[0].startTime.toOffsetDateTime()}" data-format="full"></span>
-                                    </h6>
-                                    <tr>
+                            <table class="table table-borderless">
+                                <thead>
+                                <h6 class="fs-4 lead text-start fst-italic p-3">
+                                    <span class="server-time-text" th:data-server-time="${event.timeChunks[0].startTime.toOffsetDateTime()}" data-format="full"></span>
+                                </h6>
+                                <tr>
 
-                                        <th class="text-start fs-5">Your Availability</th>
+                                    <th class="text-start fs-5">Your Availability</th>
 
-                                        <th class="fs-5">Group Availability</th>
-                                    </tr>
-                                    </thead>
+                                    <th class="fs-5">Group Availability</th>
+                                </tr>
+                                </thead>
 
-                                    <tbody>
-                                    <tr th:each="timeChunk : ${event.timeChunks}">
-                                        <td class="text-start">
-                                            <label class="inputTimes">
-                                                <input type="checkbox" class="inputAvailabilityBlock">
-                                                <span class="server-time-text"
-                                                      th:data-server-time="${timeChunk}"
-                                                      data-format="time"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
-                                                    <span th:text="${attendee.name}"></span>
+                                <tbody>
+                                <tr th:each="timeChunk : ${event.timeChunks}">
+                                    <td class="text-start">
+                                        <label class="inputTimes">
+                                            <input type="checkbox" class="inputAvailabilityBlock">
+                                            <span class="server-time-text"
+                                                  th:data-server-time="${timeChunk}"
+                                                  data-format="time"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
+                                                <span th:text="${attendee.name}"></span>
 
-                                                </th:block>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                            </th:block>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
