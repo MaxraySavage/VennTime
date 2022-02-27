@@ -5,34 +5,18 @@
 
 <body>
 
-<div class="container">
-    <h1 class="display-1 page-header text-center">VennTime</h1>
-</div>
-
 <form method="post">
-    <div class="container">
-        <div class="row my-3">
-            <div class="col-6">
-                <div class="d-inline">
-                    <label>Name</label>
-                    <input th:field="${attendee.name}" class="form-control">
-                </div>
-                <div class="d-inline">
-                    <label>Email (optional):</label>
-                    <input type="text" class="form-control"/>
-                </div>
-            </div>
-            <div class="col-6 text-center p-5">
-                <input value="Submit Times" type="submit" class="btn btn-dark btn-lg"/>
-            </div>
-        </div>
-    </div>
 
 <!--    formatting for background colors-->
     <div class="container-fluid">
         <div class="row rowoverlay">
             <div class="col-4 coloverlay green tall"></div>
             <div class="col-8 coloverlay cream tall"></div>
+        </div>
+
+        <div class="container">
+        <!--        Logo header-->
+        <h1 class="display-1 text-center my-0">VennTime</h1>
         </div>
 
         <!--        headers-->
@@ -42,6 +26,25 @@
                     <h4 class="display-6 fs-3">Event name:</h4>
                     <h3 th:text="${event.name}"></h3>
                 </div>
+            </div>
+        </div>
+
+        <!--            name input row-->
+        <div class="row p-2">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="attendeeName"></label>
+                    <input th:field="${attendee.name}" id="attendeeName" class="form-control" placeholder="Name">
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+
+        <!--            submit button-->
+        <div class="row p-2">
+            <div class="text-center">
+                <input value="Submit Times" type="submit" class="btn btn-dark"/>
             </div>
         </div>
 
