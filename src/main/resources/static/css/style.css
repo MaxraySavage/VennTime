@@ -129,3 +129,12 @@ border-width: 0px 0px 0px 5px;
 .active {
     background-color: #0086FF;
 }
+
+.right-info-sidebar{
+    position:fixed;
+    top: 40%;
+    background:black;
+    color:white;
+    right:0;
+    width:15vw;
+}
