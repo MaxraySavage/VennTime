@@ -82,6 +82,14 @@
                                         </td>
                                         <td>
                                             <div>
+                                                 <span class="tt" data-bs-placement="top" title="${attendee.name}">
+
+
+                                               <div class="progress attendeeAvailabilityGraphRow" th:data-attendees="${timeChunk.getAttendeeListString}"> </div>
+
+
+                                                </span>
+
                                                 <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
                                                     <span th:text="${attendee.name}"></span>
 

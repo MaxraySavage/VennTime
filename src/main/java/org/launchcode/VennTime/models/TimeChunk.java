@@ -28,7 +28,14 @@ public class TimeChunk extends AbstractEntity {
 
     private ZonedDateTime endTime;
 
+    public String getAttendeeListString() {
+        String result = "";
+        for(Attendee attendee: availableAttendees){
+            result += attendee.getName();
+        }
+        return result;
 
+    }
 
     public ZonedDateTime getStartTime() {
         return startTime;
