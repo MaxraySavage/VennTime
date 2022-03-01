@@ -56,9 +56,21 @@ public class Event extends AbstractEntity{
             }
             if(attendeesInCurrentWindow > mostAttendeesInWindow) {
                 bestStartingChunkIndex = i;
+                mostAttendeesInWindow = attendeesInCurrentWindow;
             }
         }
         return timeChunks.get(bestStartingChunkIndex);
+    }
+
+    public String timeRecommendationText() {
+        String result = "";
+        TimeChunk bestTimeChunk = getBestTimeChunk();
+        int bestTimeChunkIdx = timeChunks.indexOf(bestTimeChunk);
+        List<Attendee> attendeesForBestChunk = bestTimeChunk.getAvailableAttendees();
+
+
+        result += "The most people are available at " + bestTimeChunk.getStartTime();
+        return result;
     }
 
     public String getName() {
