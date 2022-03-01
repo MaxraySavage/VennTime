@@ -147,9 +147,10 @@ const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvaila
                  let firstInitial = attendee.trim().charAt(0) ;
 
                 let widthPercentage = (100/attendeeList.length)
-             attendeeAvailabilityGraphRow.innerHTML += `<div class="progress-bar progress-bar-success flex-fill" style="width:'${widthPercentage}'"
+             attendeeAvailabilityGraphRow.innerHTML += `<div class="progress-bar progress-bar-success flex-fill" style="width:'${widthPercentage}'" data-toggle="tooltip"
+             title="${attendee}"
              role="progressbar" aria-valuenow="${widthPercentage}" aria-valuemin="0" aria-valuemax="100">
-                               ${firstInitial} </div>`;
+                               ${firstInitial}  </div>`;
                                      })
              });
 
