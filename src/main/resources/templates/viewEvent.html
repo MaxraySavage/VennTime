@@ -82,7 +82,10 @@ The best 30 minute meeting time for your group starts at <span class="server-tim
                                     <tr th:each="timeChunk : ${event.timeChunks}">
                                         <td class="text-start">
                                             <label class="inputTimes">
-                                                <input type="checkbox" class="inputAvailabilityBlock">
+                                                <input type="checkbox"
+                                                       class="inputAvailabilityBlock"
+                                                       name="attendeeAvailableChunksList"
+                                                       th:value="${timeChunk.id}">
                                                 <span class="server-time-text"
                                                       th:data-server-time="${timeChunk.startTime}"
                                                       data-format="time"></span>
