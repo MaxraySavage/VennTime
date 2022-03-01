@@ -31,7 +31,7 @@ public class TimeChunk extends AbstractEntity {
     public String getAttendeeListString() {
         String result = "";
         for(Attendee attendee: availableAttendees){
-            result += attendee.getName();
+            result += attendee.getName() + ",";
         }
         return result;
 
