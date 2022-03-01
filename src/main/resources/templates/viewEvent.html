@@ -5,6 +5,12 @@
 
 <body>
 
+<div class="right-info-sidebar">
+The best 30 minute meeting time for your group starts at <span class="server-time-text"
+                                                                   th:data-server-time="${event.getBestTimeChunkOfSize(2).startTime}"
+                                                                   data-format="time"></span>
+</div>
+
 <form method="post">
 
 <!--    formatting for background colors-->
@@ -48,6 +54,8 @@
             </div>
         </div>
 
+
+
         <!--        table row in bootstrap-->
         <div class="container">
             <div class="mt-5 row text-center">
@@ -74,7 +82,10 @@
                                     <tr th:each="timeChunk : ${event.timeChunks}">
                                         <td class="text-start">
                                             <label class="inputTimes">
-                                                <input type="checkbox" class="inputAvailabilityBlock">
+                                                <input type="checkbox"
+                                                       class="inputAvailabilityBlock"
+                                                       name="attendeeAvailableChunksList"
+                                                       th:value="${timeChunk.id}">
                                                 <span class="server-time-text"
                                                       th:data-server-time="${timeChunk.startTime}"
                                                       data-format="time"></span>

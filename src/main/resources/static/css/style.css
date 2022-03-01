@@ -151,3 +151,12 @@ background-color: #95D24F
 .active {
     background-color: #0086FF;
 }
+
+.right-info-sidebar{
+    position:fixed;
+    top: 40%;
+    background:black;
+    color:white;
+    right:0;
+    width:15vw;
+}

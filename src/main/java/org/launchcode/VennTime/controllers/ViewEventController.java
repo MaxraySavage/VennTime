@@ -49,7 +49,6 @@ public class ViewEventController {
         return "viewEvent";
     }
 
-    @ResponseBody
     @PostMapping("/{id}")
     public String processViewEventForm (
             HttpServletRequest request,
@@ -65,7 +64,6 @@ public class ViewEventController {
         }
 
         Event event = optionalEvent.get();
-        String testString = "";
 
         Attendee attendee = new Attendee();
         attendee.setName(viewEventDTO.getName());
@@ -84,7 +82,7 @@ public class ViewEventController {
         }
 
 
-        return "Oh hello :)";
+        return "redirect:/viewEvent/" + id;
     }
 
 }
