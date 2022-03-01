@@ -5,9 +5,7 @@
 
 <body>
 
-
-
-
+<form method="post">
 
 <!--    formatting for background colors-->
     <div class="container-fluid">
@@ -17,8 +15,8 @@
         </div>
 
         <div class="container">
-            <!--        Logo header-->
-            <h1 class="display-1 text-center my-0">VennTime</h1>
+        <!--        Logo header-->
+        <h1 class="display-1 text-center my-0">VennTime</h1>
         </div>
 
         <!--        headers-->
@@ -50,7 +48,6 @@
             </div>
         </div>
 
-
         <!--        table row in bootstrap-->
         <div class="container">
             <div class="mt-5 row text-center">
@@ -70,16 +67,6 @@
                                         <th class="text-start fs-5">Your Availability</th>
 
                                         <th class="fs-5">Group Availability</th>
-                                        <td>
-                                            <div class="container">
-                                                <div class="row">
-
-                                                    </div>
-                                                </div>
-
-
-                                        </td>
-                                    </tr>
                                     </tr>
                                     </thead>
 
@@ -89,7 +76,7 @@
                                             <label class="inputTimes">
                                                 <input type="checkbox" class="inputAvailabilityBlock">
                                                 <span class="server-time-text"
-                                                      th:data-server-time="${timeChunk}"
+                                                      th:data-server-time="${timeChunk.startTime}"
                                                       data-format="time"></span>
                                             </label>
                                         </td>

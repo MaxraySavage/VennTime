@@ -136,11 +136,18 @@ background-color: #95D24F
 
 /*--------------------------------------------ViewEvent Form -----------------------------------------------------*/
 
-#checkedID {
+.inputAvailabilityBlock {
     opacity: 0;
     position: absolute;
 }
 
+.inputTimes {
+    /*visibility: hidden;*/
+    background-color: #ECDDB3;
+    outline-style: solid;
+    padding: 10px;
+}
+
 .active {
-   background-color: #ECDDB3 !important;
+    background-color: #0086FF;
 }
