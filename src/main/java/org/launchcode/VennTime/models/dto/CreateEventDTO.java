@@ -34,6 +34,8 @@ public class CreateEventDTO {
     private static final List<String> possibleTimezones = new ArrayList<>(ZoneId.getAvailableZoneIds());
 
     public CreateEventDTO() {
+        this.startTime = LocalTime.of(9,0);
+        this.endTime = LocalTime.of(17,0);
         Collections.sort(possibleTimezones);
     }
 
