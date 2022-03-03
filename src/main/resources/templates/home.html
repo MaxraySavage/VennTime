@@ -5,12 +5,8 @@
 
 <body>
 
-
-    <div class="container">
-        <h1 class="display-1 page-header text-center">VennTime</h1>
-    </div>
-
     <form method="post" class="was-validated">
+
     <div class="container-fluid">
         <div class="row rowoverlay">
 
@@ -18,12 +14,16 @@
             <div class="col-6 cream tall"></div>
 
         </div>
-        <div class="mt-5 row text-center">
 
+        <div class="container">
+            <h1 class="display-1 page-header text-center">VennTime</h1>
+        </div>
+
+        <div class="mt-5 row text-center justify-content-center">
 
             <div class="col-5 col-xs-12 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
-                <label>Calendar</label>
+                <label class="lead">Calendar</label>
                     <h1>
                         <i class="fas fa-angle-left prev"></i>
                         <span id="calendar-month-display"></span>
@@ -37,21 +37,17 @@
             </div>
 
 
-
-
             <div class="col-2 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
-                    <label class="mt-2" for="name">Name</label>
+                    <label class="mt-2 lead" for="name">Name</label>
                     <input th:field="${createEventDTO.name}" placeholder="Name Event" class="form-control is-valid" id="name" required/>
                 </div>
                 <input type="submit"/>
             </div>
 
-
-
             <div class="col-5 col-xs-12 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
-                    <label>Availability Range</label>
+                    <label class="lead">Availability Range</label>
                     <div class="input-group">
                         <span class="input-group-text my-2" for="start-time">Start Time</span>
                         <input type="time" class="form-control my-2 is-valid" th:field="${createEventDTO.startTime}"  required>
@@ -74,7 +70,7 @@
                 </div>
 
                 <div class="form-group my-3">
-                        <label for="validationTextarea" class="form-label">Textarea</label>
+                        <label for="validationTextarea" class="form-label"></label>
                         <textarea th:field="${createEventDTO.description}" class="form-control is-invalid" id="validationTextarea" placeholder="Description" required></textarea>
                         <div class="invalid-feedback">Please enter an event description in the textarea.</div>
                 </div>
