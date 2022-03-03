@@ -5,7 +5,7 @@
 
 <body>
 
-    <form method="post" class="was-validated">
+    <form method="post" class="needs-validation" novalidate>
 
     <div class="container-fluid">
         <div class="row rowoverlay">
@@ -40,7 +40,7 @@
             <div class="col-2 red coloverlay d-flex flex-column justify-content-center">
                 <div class="form-group my-3">
                     <label class="mt-2 lead" for="name">Name</label>
-                    <input th:field="${createEventDTO.name}" placeholder="Name Event" class="form-control is-valid" id="name" required/>
+                    <input th:field="${createEventDTO.name}" placeholder="Name Event" class="form-control" id="name" required/>
                 </div>
                 <input type="submit"/>
             </div>
@@ -50,17 +50,20 @@
                     <label class="lead">Availability Range</label>
                     <div class="input-group">
                         <span class="input-group-text my-2" for="start-time">Start Time</span>
-                        <input type="time" class="form-control my-2 is-valid" th:field="${createEventDTO.startTime}"  required>
+                        <input type="time" class="form-select my-2" th:field="${createEventDTO.startTime}" required>
+                        <div class="invalid-feedback">
                     </div>
 
                     <div class="input-group">
                         <span class="input-group-text my-2" for="end-time">End Time</span>
-                        <input type="time" class="form-control my-2 is-valid" th:field="${createEventDTO.endTime}"  required>
+                        <input type="time" class="form-select my-2" th:field="${createEventDTO.endTime}"  required>
+                        <div class="invalid-feedback">
+
                     </div>
 
                     <div class="input-group">
                         <span class="input-group-text my-2" for="time-zone">Time Zone</span>
-                        <select th:field="${createEventDTO.timezone}" class="form-control my-2 is-valid" id="time-zone" required >
+                        <select th:field="${createEventDTO.timezone}" class="form-select my-2" id="time-zone" required >
                         <th:block th:each="possibleTimezone : ${createEventDTO.getPossibleTimezones}">
                             <option th:value="${possibleTimezone}" th:text="${possibleTimezone}"></option>
                         </th:block>
@@ -71,12 +74,17 @@
 
                 <div class="form-group my-3">
                         <label for="validationTextarea" class="form-label"></label>
-                        <textarea th:field="${createEventDTO.description}" class="form-control is-invalid" id="validationTextarea" placeholder="Description" required></textarea>
-                        <div class="invalid-feedback">Please enter an event description in the textarea.</div>
+                        <textarea th:field="${createEventDTO.description}" class="form-control" id="validationTextarea" placeholder="Description" required></textarea>
+                        Please enter an event description in the textarea.
+                        <div class="invalid-feedback">
+                            Please enter an event description in the textarea.
                 </div>
             </div>
         </div>
     </div>
+                </div>
+                </div>
+            </div>
     </form>
 
 
