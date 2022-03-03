@@ -112,23 +112,6 @@ border-width: 0px 0px 0px 5px;
      cursor: pointer;
 }
 
- input[type="time"] {
-    background: #fff;
-    height:30px;
-    min-width: 150px;
-}
-
- input[type="time"]:before {
-    content: '9:00 AM';
-    color: #9d9d9d;
-    position: absolute;
-    background: #fff;
-    height: 18px;
-}
-
-input[type="time"]:hover:before {
-    content: '9:00 AM';
-}
 
 .progress-bar {
 background-color: #95D24F
