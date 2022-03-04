@@ -139,24 +139,4 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 
-const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
-    attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
-        return
-
-            const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
-            console.log(attendeeList);
-             // attendeeAvailabilityGraphRow.innerText = attendeeList.length;
-
-             attendeeList.forEach(function(attendee) {
-                 let firstInitial = attendee.trim().charAt(0) ;
-                 let widthPercentage = (100/attendeeList.length);
-
-             attendeeAvailabilityGraphRow.innerHTML += `<div class="progress-bar progress-bar-success flex-fill" style="width:${widthPercentage}%;" data-toggle="tooltip"
-             title="${attendee}"
-             role="progressbar" aria-valuenow="${widthPercentage}" aria-valuemin="0" aria-valuemax="100">
-                               ${firstInitial}  </div>`;
-                                     })
-             });
-
-
 })

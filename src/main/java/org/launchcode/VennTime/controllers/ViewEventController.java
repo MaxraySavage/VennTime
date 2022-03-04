@@ -68,6 +68,10 @@ public class ViewEventController {
         Attendee attendee = new Attendee();
         attendee.setName(viewEventDTO.getName());
         Attendee savedAttendee = attendeeRepository.save(attendee);
+
+        event.getAttendees().add(savedAttendee);
+        eventRepository.save(event);
+
         ArrayList<TimeChunk> timeChunks = new ArrayList<>();
 
         for(String item : viewEventDTO.getAttendeeAvailableChunksList()){
