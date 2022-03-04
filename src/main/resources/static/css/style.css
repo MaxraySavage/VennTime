@@ -143,10 +143,15 @@ background-color: #95D24F
 }
 
 .right-info-sidebar{
-    position:fixed;
+    position: fixed;
+    text-align: center;
     top: 40%;
-    background:black;
-    color:white;
+    background: #0096FF;
+    color: black;
     right:0;
-    width:15vw;
+    width: 20vw;
+    padding: 1em;
+    border-style: solid;
+    font-weight: bold;
+    z-index: 1;
 }
