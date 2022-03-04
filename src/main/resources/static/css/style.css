@@ -18,6 +18,12 @@ html, body {
     min-height: 100vh;
 }
 
+@media only screen and (max-width: 600px){
+.tall {
+height: 50%;
+min-height: 50vh;
+}}
+
 .rowoverlay{
   position: absolute;
   top: 0;

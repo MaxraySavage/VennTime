@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+
 const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
     attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
             const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
