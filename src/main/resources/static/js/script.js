@@ -139,4 +139,39 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 
+const attendeeAvailabilityGraphRows = document.querySelectorAll(".attendeeAvailabilityGraphRow");
+    attendeeAvailabilityGraphRows.forEach((attendeeAvailabilityGraphRow)=>{
+            const attendeeList = attendeeAvailabilityGraphRow.dataset.attendees.split(",");
+             // attendeeAvailabilityGraphRow.innerText = attendeeList.length;
+
+             attendeeList.forEach(function(attendee) {
+                 let firstInitial = attendee.trim().charAt(0) ;
+
+                let widthPercentage = (100/attendeeList.length)
+             attendeeAvailabilityGraphRow.innerHTML += `<div class="progress-bar progress-bar-success flex-fill" style="width:'${widthPercentage}'" data-toggle="tooltip"
+             title="${attendee}"
+             role="progressbar" aria-valuenow="${widthPercentage}" aria-valuemin="0" aria-valuemax="100">
+                               ${firstInitial}  </div>`;
+                                     })
+             });
+
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 })
