@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const availableTimeBtns = document.querySelectorAll(".inputTimes");
     availableTimeBtns.forEach((availableTimeBtn) => {
-    console.log('it is a function!')
         let checkBox = availableTimeBtn.querySelector(".inputAvailabilityBlock");
         availableTimeBtn.addEventListener("click", function () {
             if (checkBox.checked === true) {
