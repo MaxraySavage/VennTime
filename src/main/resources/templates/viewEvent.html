@@ -92,20 +92,29 @@ The best 30 minute meeting time for your group starts at <span class="server-tim
                                             </label>
                                         </td>
                                         <td>
-                                            <div>
                                                  <span class="tt" data-bs-placement="top" title="${attendee}">
 
+                                               <div class="progress attendeeAvailabilityGraphRow" th:data-attendees="${timeChunk.getAttendeeListString}">
 
-                                               <div class="progress attendeeAvailabilityGraphRow" th:data-attendees="${timeChunk.getAttendeeListString}"> </div>
+                                                   <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
+                                                    <div class="progress-bar progress-bar-success"
+                                                         th:style="|width: ${100.0 / event.getAttendees.size()}%;|"
+                                                         data-toggle="tooltip"
+                                                         th:title="${attendee.name}"
+                                                         role="progressbar" th:aria-valuenow="${timeChunk.getAvailableAttendees.size()}" aria-valuemin="0" aria-valuemax="100">
+                                                        <span th:text="${attendee.name}"></span>
+                                                    </div>
+
+
+                                                </th:block>
+
+
+                                               </div>
+
 
 
                                                 </span>
 
-                                                <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
-                                                    <span th:text="${attendee.name}"></span>
-
-                                                </th:block>
-                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
