@@ -3,6 +3,10 @@ package org.launchcode.VennTime.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.lang.reflect.Array;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +74,33 @@ public class Event extends AbstractEntity{
 
 
         result += "The most people are available at " + bestTimeChunk.getStartTime();
+        return result;
+    }
+
+    public ArrayList<ArrayList<TimeChunk>> getChunksSplitByDay(){
+
+        ArrayList<ArrayList<TimeChunk>> result = new ArrayList<>();
+
+        for(int i = 0; i < timeChunks.size(); i++){
+            TimeChunk currentTimeChunk = timeChunks.get(i);
+
+            if(i == 0){
+                ArrayList<TimeChunk> nextList = new ArrayList<TimeChunk>();
+                nextList.add(currentTimeChunk);
+                result.add(nextList);
+                continue;
+            }
+
+            TimeChunk previousTimeChunk = timeChunks.get(i - 1);
+
+            if(currentTimeChunk.getStartingEpochDay() != previousTimeChunk.getStartingEpochDay()){
+                ArrayList<TimeChunk> nextList = new ArrayList<TimeChunk>();
+                nextList.add(timeChunks.get(i));
+                result.add(nextList);
+            } else {
+                result.get(result.size() - 1).add(timeChunks.get(i));
+            }
+        }
         return result;
     }
 
