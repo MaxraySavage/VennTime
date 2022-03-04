@@ -2,6 +2,7 @@ package org.launchcode.VennTime.models;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +68,9 @@ public class TimeChunk extends AbstractEntity {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public long getStartingEpochDay() {
+        return startTime.getLong(ChronoField.EPOCH_DAY);
     }
 }

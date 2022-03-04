@@ -6,14 +6,14 @@
 <body>
 
 <div class="right-info-sidebar">
-The best 30 minute meeting time for your group starts at <span class="server-time-text"
+    The best 30 minute meeting time for your group starts at <span class="server-time-text"
                                                                    th:data-server-time="${event.getBestTimeChunkOfSize(2).startTime}"
                                                                    data-format="time"></span>
 </div>
 
 <form method="post">
 
-<!--    formatting for background colors-->
+    <!--    formatting for background colors-->
     <div class="container-fluid">
         <div class="row rowoverlay">
             <div class="col-4 coloverlay green tall"></div>
@@ -21,8 +21,8 @@ The best 30 minute meeting time for your group starts at <span class="server-tim
         </div>
 
         <div class="container">
-        <!--        Logo header-->
-        <h1 class="display-1 text-center my-0">VennTime</h1>
+            <!--        Logo header-->
+            <h1 class="display-1 text-center my-0">VennTime</h1>
         </div>
 
         <!--        headers-->
@@ -55,7 +55,6 @@ The best 30 minute meeting time for your group starts at <span class="server-tim
         </div>
 
 
-
         <!--        table row in bootstrap-->
         <div class="container">
             <div class="mt-5 row text-center">
@@ -65,10 +64,14 @@ The best 30 minute meeting time for your group starts at <span class="server-tim
                     <div class="container">
                         <div class="timeTable">
 
+                            <th:block th:each="chunkList : ${event.getChunksSplitByDay()}">
+
                                 <table class="table table-borderless">
                                     <thead>
                                     <h6 class="fs-4 lead text-start fst-italic p-3">
-                                        <span class="server-time-text" th:data-server-time="${event.timeChunks[0].startTime.toOffsetDateTime()}" data-format="full"></span>
+                                        <span class="server-time-text"
+                                              th:data-server-time="${chunkList.get(0).startTime.toOffsetDateTime()}"
+                                              data-format="full"></span>
                                     </h6>
                                     <tr>
 
@@ -79,7 +82,7 @@ The best 30 minute meeting time for your group starts at <span class="server-tim
                                     </thead>
 
                                     <tbody>
-                                    <tr th:each="timeChunk : ${event.timeChunks}">
+                                    <tr th:each="timeChunk : ${chunkList}">
                                         <td class="text-start">
                                             <label class="inputTimes">
                                                 <input type="checkbox"
@@ -92,33 +95,37 @@ The best 30 minute meeting time for your group starts at <span class="server-tim
                                             </label>
                                         </td>
                                         <td>
-                                                 <span class="tt" data-bs-placement="top" title="${attendee}">
+                                                     <span class="tt" data-bs-placement="top" title="${attendee}">
 
-                                               <div class="progress attendeeAvailabilityGraphRow" th:data-attendees="${timeChunk.getAttendeeListString}">
+                                                   <div class="progress attendeeAvailabilityGraphRow"
+                                                        th:data-attendees="${timeChunk.getAttendeeListString}">
 
-                                                   <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
-                                                    <div class="progress-bar progress-bar-success"
-                                                         th:style="|width: ${100.0 / event.getAttendees.size()}%;|"
-                                                         data-toggle="tooltip"
-                                                         th:title="${attendee.name}"
-                                                         role="progressbar" th:aria-valuenow="${timeChunk.getAvailableAttendees.size()}" aria-valuemin="0" aria-valuemax="100">
-                                                        <span th:text="${attendee.name}"></span>
-                                                    </div>
-
-
-                                                </th:block>
-
-
-                                               </div>
+                                                       <th:block th:each="attendee : ${timeChunk.getAvailableAttendees}">
+                                                        <div class="progress-bar progress-bar-success"
+                                                             th:style="|width: ${100.0 / event.getAttendees.size()}%;|"
+                                                             data-toggle="tooltip"
+                                                             th:title="${attendee.name}"
+                                                             role="progressbar"
+                                                             th:aria-valuenow="${timeChunk.getAvailableAttendees.size()}"
+                                                             aria-valuemin="0" aria-valuemax="100">
+                                                            <span th:text="${attendee.name}"></span>
+                                                        </div>
 
 
+                                                    </th:block>
 
-                                                </span>
+
+                                                   </div>
+
+
+
+                                                    </span>
 
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
+                            </th:block>
                         </div>
                     </div>
                 </div>
