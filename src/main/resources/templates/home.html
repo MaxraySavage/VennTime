@@ -46,17 +46,20 @@
             </div>
 
             <div class="col-lg-5 col-xs-12 red coloverlay d-flex flex-column justify-content-center">
-                <div class="form-group my-3">
+                <div class="form-group w-75 ms-2 my-3">
                     <label class="lead">Availability Range</label>
+
                     <div class="input-group">
                         <span class="input-group-text my-2" for="start-time">Start Time</span>
                         <input type="time" class="form-select my-2" th:field="${createEventDTO.startTime}" required>
                         <div class="invalid-feedback">
+
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-text my-2" for="end-time">End Time</span>
                             <input type="time" class="form-select my-2" th:field="${createEventDTO.endTime}"  required>
+
                             <div class="invalid-feedback">
 
                             </div>
@@ -72,11 +75,13 @@
 
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </form>
+
 
 </body>
 </html>
