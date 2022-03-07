@@ -16,8 +16,6 @@ public class CreateEventDTO {
     @Size(min=2, max=50, message= "Name must be at least 3 characters long.")
     private String name;
 
-    @NotBlank(message= "Event description is required")
-    @Size(min=7, max=500, message= "Add a description of event")
     private String description;
 
     @NotBlank(message= "Must select at least one date")
